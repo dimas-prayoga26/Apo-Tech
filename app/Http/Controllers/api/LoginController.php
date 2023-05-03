@@ -17,7 +17,7 @@ class LoginController extends Controller
         if(Auth::attempt($loginData)){
             $token = Auth::user()->createToken('authToken')->plainTextToken;
             $user = array_merge(Auth::user()->toArray(), ['token' => $token]);
-            return $this->okResponse('Login berhasil', $user);
+            return $this->okResponse('Login berhasil!', $user);
         }
         
         return $this->unauthenticatedResponse('Login Gagal!');
