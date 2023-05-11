@@ -101,7 +101,8 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         } elseif ($user->hasRole('buyer')) {
             $user->syncRoles(['buyer']);
-            return redirect()->route('dashboard');
+            dd('Hallo Buyer');
+            // Belum Ada Landing Page
         } elseif ($user->hasRole('courier')) {
             $user->syncRoles(['courier']);
             return redirect()->route('dashboard');

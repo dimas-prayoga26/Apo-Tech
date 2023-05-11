@@ -56,6 +56,12 @@ Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(f
 
 });
 
+/* ================================================================================================================ *
+*                                                                                                                   *
+*                                          User Access Role Admin, Seller, Buyer                                    *
+*                                                                                                                   *
+* ================================================================================================================= */
+
 Route::group(['middleware' => ['role:admin|seller|courier']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
