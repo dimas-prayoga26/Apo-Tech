@@ -170,5 +170,13 @@ class AuthController extends Controller
                     ? redirect()->route('auth.login')->with('status', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
     }
+
+    public function logout(){
+
+        Auth::logout();
+        
+        session()->flash('warning', 'Logout success!');
+        return redirect()->route('auth.login');
+    }
     
 }

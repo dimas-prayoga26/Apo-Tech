@@ -280,15 +280,15 @@
                         </div>
                         <div class="dropdown main-profile-menu nav nav-item nav-link">
 
-                            {{-- <a class="profile-user d-flex" href=""><img src="virtual/assets/img/faces/6.png" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a> --}}
+                            <a class="profile-user d-flex" href=""><img src="virtual/assets/img/faces/6.png" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
 
                             <div class="dropdown-menu">
                                 <div class="main-header-profile header-img">
-                                    {{-- <div class="main-img-user"><img src="virtual/assets/img/faces/6.png"></div> --}}
+                                    <div class="main-img-user"><img src="virtual/assets/img/faces/6.png"></div>
                                     <h6 class="px-4">Role</h6><span>Deo Ananda Rizky</span>
                                 </div>
                                 <a class="dropdown-item" href=""><i class="far fa-user"></i> My Profile</a>
-                                <a class="dropdown-item" href=""><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                                <a class="dropdown-item" href="{{ route('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
                             </div>
                         </div>
                         <div class="dropdown main-header-message right-toggle">

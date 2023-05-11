@@ -52,7 +52,7 @@ Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(f
 
     Route::get('/login', 'index')->name('login');
     Route::post('/login', 'authenticate')->name('login.process');
-    Route::post('/logout', 'logout')->name('logout');
+    Route::get('/logout', 'logout')->name('logout');
 
 });
 
