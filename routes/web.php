@@ -56,17 +56,13 @@ Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(f
 
 });
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['role:admin|seller|courier']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-Route::group(['middleware' => ['role:seller']], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+
+
 // Route::group(['middleware' => 'auth:buyer'], function () {
 //     Route::get('/kurir/dashboard', [KurirController::class, 'index']);
 // });
 
-Route::group(['middleware' => ['role:courier']], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});

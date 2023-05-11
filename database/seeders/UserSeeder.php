@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
                 'email' => 'superadmin@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status->id,
-            ])->assignRole('admin');
+            ])->assignRole(['admin']);
 
             UserApotech::create([
                 'user_id'       => $admin->id,
@@ -73,7 +73,7 @@ class UserSeeder extends Seeder
                 'email' => 'courier@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status->id,
-            ])->assignRole('courier');
+            ])->assignRole(['courier']);
 
             UserApotech::create([
                 'user_id'       => $courier->id,
@@ -128,13 +128,14 @@ class UserSeeder extends Seeder
 
             // $user[0]->assignRole('seller');
             // $user[1]->assignRole('buyer');
-
+            
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-
+            
             echo $e->getMessage();
         }
+        
         
     }
 }

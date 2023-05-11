@@ -14,7 +14,7 @@
                             {{-- <img src="virtual/assets/img/faces/6.png" alt="user-img" class="rounded-circle mCS_img_loaded"> --}}
                         </div>
                         <div class="user-info">
-                            <h6 class=" mb-0 text-dark">Deo Ananda Rizky</h6>
+                            <h6 class=" mb-0 text-dark">Apo-Tech</h6>
                           
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                 <li class="slide">
                     <a class="side-menu__item" href="" data-sidebar="project">
                         <i class="side-menu__icon fe fe-airplay"></i>
-                        <span class="side-menu__label">Project</span>
+                        <span class="side-menu__label">Category</span>
                     </a>
                 </li>
             </ul>

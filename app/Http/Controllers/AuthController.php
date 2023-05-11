@@ -80,33 +80,39 @@ class AuthController extends Controller
 
     }
 
-    public function authenticate(Request $request){
-        $credentials = $request->validate([
-            'email' => ['required', 'email:dns'],
-            'password' => ['required']
-        ]);
+    public function authenticate(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => ['required', 'email:dns'],
+        'password' => ['required']
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            // $user = Auth::user();
-            // dd($user->roles);
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
 
+        // Refresh user roles
+        $user = Auth::user();
 
-            if (Auth::user()->hasRole('admin')) {
-                return redirect()->route('dashboard');
-            } elseif (Auth::user()->hasRole('seller')) {
-                return redirect()->route('dashboard');
-            } elseif (Auth::user()->hasRole('buyer')) {
-                dd('Hello buyer');
-            } elseif (Auth::user()->hasRole('courier')) {
-                return redirect()->route('dashboard');
-            } else {
-                return redirect()->route('auth.login');
-            }
+        if ($user->hasRole('admin')) {
+            $user->syncRoles(['admin']);
+            return redirect()->route('dashboard');
+        } elseif ($user->hasRole('seller')) {
+            $user->syncRoles(['seller']);
+            return redirect()->route('dashboard');
+        } elseif ($user->hasRole('buyer')) {
+            $user->syncRoles(['buyer']);
+            return redirect()->route('dashboard');
+        } elseif ($user->hasRole('courier')) {
+            $user->syncRoles(['courier']);
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('auth.login');
         }
-
-        return redirect()->back()->with('error', 'Login Invalid');
     }
+
+    return redirect()->back()->with('error', 'Invalid login');
+}
+
 
     public function accountActivation($id, $rand)
     {
