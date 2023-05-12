@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
-use App\Models\Product;
+use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class Product extends Model
 {
     use HasFactory, Uuid;
 
@@ -18,7 +19,11 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function products(){
-        return $this->hasMany(Product::class);
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function images(){
+        return $this->hasMany(ProductImage::class);
     }
 }

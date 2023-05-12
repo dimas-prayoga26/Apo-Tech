@@ -7,7 +7,7 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class ProductImage extends Model
 {
     use HasFactory, Uuid;
 
@@ -18,7 +18,7 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function products(){
-        return $this->hasMany(Product::class);
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
 }

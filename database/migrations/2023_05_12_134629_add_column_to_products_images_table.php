@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreignUuid('reviews_id')->constrained();
+        Schema::table('product_images', function (Blueprint $table) {
+            $table->foreignUuid('product_id')->constrained();
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('products_images', function (Blueprint $table) {
             //
         });
     }

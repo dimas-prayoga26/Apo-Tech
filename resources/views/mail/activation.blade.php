@@ -33,7 +33,7 @@
             
             <tr>
                 
-                <td align="center" bgcolor="#1976D2">
+                <td align="center" bgcolor="#ffffff">
                     
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
                         <tbody>
@@ -70,7 +70,7 @@
                                                     <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
                                                         <tbody>
                                                             <tr>
-                                                                <td width="100%" height="7" align="center" border="0" bgcolor="#03a9f4"></td>
+                                                                <td width="100%" height="7" align="center" border="0" bgcolor="#00B9D8"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -91,7 +91,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td width="100%" align="center">
-                                                                    <img width="200" src="{{ asset('assets-image/icon_toko.png') }}" alt="Virtual Technopark" border="0" style="text-align: center;"/>
+                                                                    <img width="200" src="{{ asset('assets-image/logo.png') }}" alt="Logo Apo-Tech" border="0" style="text-align: center;"/>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -104,8 +104,8 @@
                                                             <tr>
                                                                 <td width="100%" align="center">
                                                                     <p style="font-family:'Ubuntu', sans-serif; font-size:14px; color:#202020; padding-left:20px; padding-right:20px; text-align:justify;">
-                                                                        Terimakasih <span style="font-family:'Ubuntu Mono', monospace; color:#354fe4;">{{ $user->username }}</span> telah mendaftar di web toko Apo-Tech kami, langkah selanjutnya yang harus anda lakukan adalah memverifikasi akun anda demi keamanan sistem kami. Klik tombol di bawah ini untuk melakukan aktivasi akun anda.
-                                                                    </p>                                                                    
+                                                                        Terimakasih <span style="font-family:'Ubuntu Mono', monospace; color:#354fe4;">{{ $user->username }}</span> telah mendaftar di web Virtual Technopark, langkah selanjutnya yang harus anda lakukan adalah memverifikasi akun anda demi keamanan sistem kami. Klik tombol di bawah ini untuk melakukan aktivasi akun anda.
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -126,7 +126,7 @@
                                                     <table width="200" border="0" cellpadding="0" cellspacing="0" align="center">
                                                         <tbody>
                                                             <tr>
-                                                                <td align="center" bgcolor="#1976D2">
+                                                                <td align="center" bgcolor="#00B9D8">
                                                                     <a style="font-family:'Ubuntu Mono', monospace; display:block; color:#ffffff; font-size:14px; font-weight:bold; text-decoration:none; padding-left:20px; padding-right:20px; padding-top:20px; padding-bottom:20px;" href="{{ route('activation', [$user->id, sha1(rand(24342, 999999))]) }}">Verify E-mail Address</a>
                                                                 </td>
                                                             </tr>
@@ -165,7 +165,7 @@
                                         <tbody>
                                             <tr>
                                                 <td width="100%" align="center" style="padding-left:15px; padding-right:15px;">
-                                                    <p style="font-family:'Ubuntu Mono', monospace; color:#ffffff; font-size:12px;">Apo-Tech&copy; 2023, All Rights Reserved</p>
+                                                    <p style="font-family:'Ubuntu Mono', monospace; color:#000000; font-size:12px;">Apo-Tech &copy; 2023, All Rights Reserved</p>
                                                 </td>
                                             </tr>
                                         </tbody>

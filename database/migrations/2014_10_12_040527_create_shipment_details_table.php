@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shipment_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('shipments_id')->constrained();
+            $table->foreignUuid('shipment_id')->constrained();
             $table->string('status');
             $table->string('evidance');
             $table->timestamps();

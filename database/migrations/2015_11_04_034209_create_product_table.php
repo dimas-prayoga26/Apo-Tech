@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('categories_id')->constrained();
-            $table->foreignUuid('user_apoteches_id')->constrained();
-            $table->foreignUuid('products_images_id')->constrained();
-            // $table->foreignUuid('reviews_id')->constrained();
+            $table->foreignUuid('category_id')->constrained();
+            $table->foreignUuid('user_id')->constrained();
             $table->string('name');
             $table->text('description');
-            $table->integer('quantity');
-            $table->string('is_need_prescription');
+            $table->integer('stock');
+            $table->boolean('is_need_prescription');
             $table->integer('price');
             $table->timestamps();
         });
