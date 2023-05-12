@@ -177,7 +177,7 @@ class AuthController extends Controller
         Auth::logout();
         
         session()->flash('warning', 'Logout success!');
-        return redirect()->route('auth.login');
+        return redirect()->route('auth.login')->with('succes', 'Logout Succes');;
     }
     
 }

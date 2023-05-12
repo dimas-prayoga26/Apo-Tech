@@ -280,12 +280,12 @@
                         </div>
                         <div class="dropdown main-profile-menu nav nav-item nav-link">
 
-                            <a class="profile-user d-flex" href=""><img src="virtual/assets/img/faces/6.png" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
+                            <a class="profile-user d-flex" href=""><img src="{{  asset(Auth::user()->userApotech()->image ?? 'virtual/assets/img/default-user.webp')  }}" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
 
                             <div class="dropdown-menu">
                                 <div class="main-header-profile header-img">
-                                    <div class="main-img-user"><img src="virtual/assets/img/faces/6.png"></div>
-                                    <h6 class="px-4">Role</h6><span></span>
+                                    <div class="main-img-user"><img src="{{  asset(Auth::user()->userApotech()->image ?? 'virtual/assets/img/default-user.webp')  }}"></div>
+                                    <h6 class="px-4">{{ Auth::user()->username }}</h6><span>{{ Auth::user()->userApotech()->first()->first_name }} {{ Auth::user()->userApotech()->first()->last_name }}</span>
                                 </div>
                                 <a class="dropdown-item" href=""><i class="far fa-user"></i> My Profile</a>
                                 <a class="dropdown-item" href="{{ route('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>

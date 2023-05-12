@@ -34,6 +34,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(StatusUser::class);
     }
 
+    public function userApotech()
+    {
+        return $this->hasOne(UserApotech::class);
+    }
+    
     public function admin()
     {
         return $this->hasOne(Admin::class);

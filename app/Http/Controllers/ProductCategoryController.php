@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductCategoryController extends Controller
@@ -29,7 +29,19 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        
+        Category::create([
+            'name'          => $request->name,
+            // 'is_approved'   => getRoleName() == 'admin' ? true : false,
+        ]);
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Success Add Product Category!',
+        ]);
     }
 
     /**
@@ -45,7 +57,9 @@ class ProductCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json([
+            'data'  => Category::find($id)
+        ]);
     }
 
     /**
@@ -53,19 +67,35 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Category::find($id)->update([
+            'name'          => $request->name,
+        ]);
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Success Update Product Category!',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Success Delete Product Category!',
+        ]);
     }
 
     public function datatable(Request $request){
-        $data = ProductCategory::get();
+        $data = Category::get();
         
         return DataTables::of($data)->make();
     }

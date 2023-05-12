@@ -30,9 +30,9 @@
                 <h3 class="card-title">List Product Category</h3>
             </div>
             <div class="card-body">
-                {{-- <a class="btn btn-primary modal-effect mb-3 data-table-btn ms-4" data-bs-effect="effect-super-scaled" onclick="create()">
+                <a class="btn btn-primary modal-effect mb-3 data-table-btn ms-4" data-bs-effect="effect-super-scaled" onclick="create()">
                     <span class="fe fe-plus"> </span>Add new data
-                </a> --}}
+                </a>
                 <table id="datatable" class="table table-bordered text-nowrap border-bottom">
                     <thead>
                         <tr>
@@ -109,17 +109,17 @@ $(document).ready(function() {
         columnDefs: [
         {
             targets: 0,
-            render: function(data, type, full, Category) {
+            render: function(data, type, full, category) {
                 return (category.row + 1);
             }
         }, 
         {
             targets: -1,
-            render: function(data, type, full, Category) {
+            render: function(data, type, full, category) {
                 return `
                 <div class="btn-list">
-                    <a href="javascript:void(0)" onclick="edit('${data}')" class="btn btn-sm btn-primary modal-effect btn-edit" data-bs-effect="effect-super-scaled"><span class="fe fe-edit"> </span></a>
-                    <a href="javascript:void(0)" onclick="destroy('${data}')" class="btn btn-sm btn-danger btn-delete"><span class="fe fe-trash-2"> </span></a>
+                    <a href="javascript:void(0)" onclick="edit('${data}')" class="btn btn-md btn-primary modal-effect btn-edit" data-bs-effect="effect-super-scaled"><span class="fe fe-edit"> </span></a>
+                    <a href="javascript:void(0)" onclick="destroy('${data}')" class="btn btn-md btn-danger btn-delete"><span class="fe fe-trash-2"> </span></a>
                 </div>
                 `;
             },
@@ -141,5 +141,141 @@ $(document).ready(function() {
         submit();
     })
 });
+
+    function create(){
+        submit_method = 'create';
+
+        $('#id').val('');
+        $('#form')[0].reset();
+
+        $('#modal_form').modal('show');
+        $('.modal-title').text('Add Data Product Category');
+    }
+
+    function edit(id){
+        submit_method = 'edit';
+
+        $('#form')[0].reset();
+        var url = "{{ route('product-category.edit',":id") }}";
+        url = url.replace(':id', id);
+        
+        $.get(url, function (response) {
+            response = response.data;
+            
+            $('#id').val(response.id);
+            $('#modal_form').modal('show');
+            $('.modal-title').text('Edit Data Product Category');
+
+            $('#name').val(response.name);
+        });
+    }
+
+    function submit() {
+        var id          = $('#id').val();
+        var name        = $('#name').val();
+
+        var url = "{{ route('product-category.store') }}";
+    
+        $('#btnSave').text('Menyimpan...');
+        $('#btnSave').attr('disabled', true);
+
+        if(submit_method == 'edit'){
+            url = "{{ route('product-category.update',":id") }}";
+            url = url.replace(':id', id);
+        }
+
+        $.ajax({
+            url: url,
+            type: submit_method == 'create' ? 'POST' : 'PUT',
+            dataType: 'json',
+            data: {
+                id: id,
+                name: name
+            },
+            success: function (data) {
+                if(data.status) {
+                    $('#modal_form').modal('hide');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    table.ajax.reload();
+
+                    $('#btnSave').text('Simpan');
+                    $('#btnSave').attr('disabled', false);
+                }
+                else{
+                    for (var i = 0; i < data.inputerror.length; i++) 
+                    {
+                        $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                        $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
+                    }
+                }
+                
+                $('#btnSave').text('Simpan');
+                $('#btnSave').attr('disabled',false); //set button enable 
+            }, 
+            error: function(data){
+                var error_message = "";
+                error_message += " ";
+                
+                $.each( data.responseJSON.errors, function( key, value ) {
+                    error_message +=" "+value+" ";
+                });
+
+                error_message +=" ";
+                Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'ERROR !',
+                        text: error_message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                $('#btnSave').text('Simpan');
+                $('#btnSave').attr('disabled', false);
+            },
+        });
+    }
+
+    function destroy(id) {
+        var url = "{{ route('product-category.destroy',":id") }}";
+        url = url.replace(':id', id);
+    
+        Swal.fire({
+            title: "Yakin ingin menghapus data ini?",
+            text: "Ketika data terhapus, anda tidak bisa mengembalikan data tersbut!",
+            icon: "warning",
+            showCancelButton  : true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor : "#d33",
+            confirmButtonText : "Ya, Hapus!"
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url    : url,
+                    type   : "delete",
+                    data: { "id":id },
+                    dataType: "JSON",
+                    success: function(data) {
+                        table.ajax.reload();
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Data berhasil dihapus',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+            }
+        })
+    } 
 </script>
 @endsection

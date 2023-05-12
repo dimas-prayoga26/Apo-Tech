@@ -61,6 +61,13 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
               </div>
+            @elseif(session()->has('succes'))
+            <div class="alert alert-success alert-dismissible fade show " role="alert">
+              <strong>{{ session()->get('succes') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             @endif
           <div style="width: 400px" class="bg-white p-4 rounded-4">
             <form action="{{ route('auth.login.process') }}" method="post">
