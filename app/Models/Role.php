@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
+use App\Models\User;
 use Spatie\Permission\Models\Role as SpatieRole;
 
 class Role extends SpatieRole// astagaa masih drung diganmti bae

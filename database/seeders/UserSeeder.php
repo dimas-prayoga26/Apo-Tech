@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             foreach ($roles as $data) {
                 $role = Role::updateOrCreate([
                     'name'  => $data,
-                    'guard_name' => 'web'
+                    // 'guard_name' => 'web'
                 ]);
             }
 
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             foreach ($permissions as $data) {
                 Permission::updateOrCreate([
                     'name'  => $data,
-                    'guard_name' => 'web'
+                    // 'guard_name' => 'web'
                 ]);
             }
     
@@ -53,10 +53,10 @@ class UserSeeder extends Seeder
     
             $admin = User::create([
                 'username' => 'superAdmin',
-                'email' => 'superAdmin@gmail.com',
+                'email' => 'superadmin@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status->id,
-            ])->assignRole('admin');
+            ])->assignRole(['admin']);
 
             UserApotech::create([
                 'user_id'       => $admin->id,
@@ -68,15 +68,15 @@ class UserSeeder extends Seeder
                 'registered_at' => date('Y-m-d')
             ]);
 
-            $admin = User::create([
+            $courier = User::create([
                 'username' => 'Courier123',
-                'email' => 'Courier123@gmail.com',
+                'email' => 'courier@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status->id,
-            ])->assignRole('courier');
+            ])->assignRole(['courier']);
 
             UserApotech::create([
-                'user_id'       => $admin->id,
+                'user_id'       => $courier->id,
                 'first_name'    => 'Courier',
                 'last_name'     => 'Expedition',
                 'phone_number'  => '12345',
@@ -90,15 +90,15 @@ class UserSeeder extends Seeder
             // =========================USER SELLER DAN USER BUYER======================================
 
             $Users_Seller = User::create([
-                'username' => 'dimas-seller',
-                'email' => 'siinchi1@gmail.com',
+                'username' => 'seller',
+                'email' => 'seller@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status->id,
             ])->assignRole('seller');
 
             $Users_Buyer = User::create([
-                'username' => 'dimas-buyer',
-                'email' => 'siinchi2@gmail.com',
+                'username' => 'buyer',
+                'email' => 'buyer@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status->id,
             ])->assignRole('buyer');
@@ -106,14 +106,14 @@ class UserSeeder extends Seeder
             $Users = [
                 [
                     'user_id'                   => $Users_Seller->id,
-                    'first_name'                => 'Dimas',
+                    'first_name'                => 'Its',
                     'last_name'                 => 'Seller',
                     'phone_number'              => '12345',
                     'image'                     => 'images/dimasSeller.jpg',
                     'registered_at'             => date('Y-m-d')
                 ],[
                     'user_id'                   => $Users_Buyer->id,
-                    'first_name'                => 'Dimas',
+                    'first_name'                => 'Its',
                     'last_name'                 => 'Buyer',
                     'phone_number'              => '67890',
                     'image'                     => 'images/dimasSeller.jpg',
@@ -128,13 +128,14 @@ class UserSeeder extends Seeder
 
             // $user[0]->assignRole('seller');
             // $user[1]->assignRole('buyer');
-
+            
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-
+            
             echo $e->getMessage();
         }
+        
         
     }
 }

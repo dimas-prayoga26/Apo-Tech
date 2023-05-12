@@ -4,6 +4,12 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductCategoryController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+>>>>>>> acd689e79e17665973952cfc2de997be62f34669
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+<<<<<<< HEAD
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
@@ -43,3 +50,58 @@ Route::group(['middleware' => 'auth:buyer'], function () {
 Route::group(['middleware' => 'auth:couries'], function () {
     Route::get('/kurir/dashboard', [KurirController::class, 'index']);
 });
+=======
+Route::get('/confirm_verification_email', function () {
+    return view('verifyAccount');
+})->name('procces_verification');
+// Route::post('/forgot-password', [AuthController::class, 'mailSend'])->middleware('guest')->name('password.email');
+
+Route::get('/successfuly_verification', function () {
+    return view('successfuly_verification');
+})->name('success_verification');
+
+Route::get('/{id?}/account-activation/{rand?}', [AuthController::class, 'accountActivation'])->name('activation');
+
+Route::get('/forgot-password', function (){
+    return view('forgotPassword');
+})->name('forgot-password');
+
+Route::post('/forgot-password', [AuthController::class, 'mailSend'])->name('password.email');
+
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('resetPassword', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'passwordReset'])->name('password.update');
+
+Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(function () {
+
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register', 'create')->name('register.process');
+
+    Route::get('/login', 'index')->name('login');
+    Route::post('/login', 'authenticate')->name('login.process');
+    Route::get('/logout', 'logout')->name('logout');
+
+});
+
+/* ================================================================================================================ *
+*                                                                                                                   *
+*                                          User Access Role Admin, Seller, Buyer                                    *
+*                                                                                                                   *
+* ================================================================================================================= */
+
+Route::group(['middleware' => ['role:admin|seller|courier']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('blog-category/datatable', [ProductCategoryController::class, 'datatable'])->name('product-category.datatable');
+    Route::resource('product-category', ProductCategoryController::class);
+});
+
+
+
+// Route::group(['middleware' => 'auth:buyer'], function () {
+//     Route::get('/kurir/dashboard', [KurirController::class, 'index']);
+// });
+
+>>>>>>> acd689e79e17665973952cfc2de997be62f34669
