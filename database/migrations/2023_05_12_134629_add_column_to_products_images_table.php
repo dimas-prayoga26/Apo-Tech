@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regency', function (Blueprint $table) {
-            $table->id('regency_id');
-            $table->foreignId('province_id');
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('product_images', function (Blueprint $table) {
+            $table->foreignUuid('product_id')->constrained();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('regency');
+        Schema::table('products_images', function (Blueprint $table) {
+            //
+        });
     }
 };
