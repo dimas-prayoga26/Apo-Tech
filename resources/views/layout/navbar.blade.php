@@ -285,7 +285,7 @@
                             <div class="dropdown-menu">
                                 <div class="main-header-profile header-img">
                                     <div class="main-img-user"><img src="virtual/assets/img/faces/6.png"></div>
-                                    <h6 class="px-4">Role</h6><span>Deo Ananda Rizky</span>
+                                    <h6 class="px-4">Role</h6><span></span>
                                 </div>
                                 <a class="dropdown-item" href=""><i class="far fa-user"></i> My Profile</a>
                                 <a class="dropdown-item" href="{{ route('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
