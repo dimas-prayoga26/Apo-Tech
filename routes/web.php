@@ -19,9 +19,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/','App\Http\Controllers\landingpage\HomeController@index')->name('home.index');
+Route::get('/semua_product','App\Http\Controllers\landingpage\AllProductController@index')->name('allProduct.index');
+Route::get('/liat_product/nama_product','App\Http\Controllers\landingpage\ShowProductController@index')->name('showProduct.index');
+Route::get('/profile/wishlist','App\Http\Controllers\landingpage\WishlistController@index')->name('wishlist.index');
+Route::get('/profile/order_information','App\Http\Controllers\landingpage\ProductOrderInformationShopController@index')->name('orderInformation.index');
+Route::get('/toko','App\Http\Controllers\landingpage\ShowShopController@index')->name('toko.index');
 
 Route::get('/confirm_verification_email', function () {
     return view('verifyAccount');
