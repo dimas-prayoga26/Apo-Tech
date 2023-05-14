@@ -109,13 +109,13 @@ $(document).ready(function() {
         columnDefs: [
         {
             targets: 0,
-            render: function(data, type, full, category) {
-                return (category.row + 1);
+            render: function(data, type, full, meta) {
+                return (meta.row + 1);
             }
         }, 
         {
             targets: -1,
-            render: function(data, type, full, category) {
+            render: function(data, type, full, meta) {
                 return `
                 <div class="btn-list">
                     <a href="javascript:void(0)" onclick="edit('${data}')" class="btn btn-md btn-primary modal-effect btn-edit" data-bs-effect="effect-super-scaled"><span class="fe fe-edit"> </span></a>

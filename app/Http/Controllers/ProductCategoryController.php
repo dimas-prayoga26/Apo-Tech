@@ -13,7 +13,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return view('contents.category.product-category');
+        return view('contents.product_category.index');
     }
 
     /**
@@ -98,5 +98,12 @@ class ProductCategoryController extends Controller
         $data = Category::get();
         
         return DataTables::of($data)->make();
+    }
+
+    public function select2(Request $request){
+        $query = $request->term['term'] ??'';
+        $data = Category::where('name', 'LIKE', "%$query%")->get();
+        
+        return response()->json($data);
     }
 }

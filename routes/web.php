@@ -4,6 +4,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -69,8 +70,11 @@ Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(f
 Route::group(['middleware' => ['role:admin|seller|courier']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('blog-category/datatable', [ProductCategoryController::class, 'datatable'])->name('product-category.datatable');
+    Route::get('product-category/datatable', [ProductCategoryController::class, 'datatable'])->name('product-category.datatable');
     Route::resource('product-category', ProductCategoryController::class);
+
+    Route::get('product/datatable', [ProductController::class, 'datatable'])->name('product.datatable');
+    Route::resource('product', ProductController::class);
 });
 
 

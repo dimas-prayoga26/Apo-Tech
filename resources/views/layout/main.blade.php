@@ -88,45 +88,55 @@
 		<a href="#top" id="back-to-top"><i class="ti-angle-double-up"></i></a>
 
 		<!--- JQuery min js --->
-		<script src="{{ asset('virtual/assets/plugins/jquery/jquery.min.js') }}"></script>
+		<!--- Back-to-top --->
+		<a href="#top" id="back-to-top"><i class="ti-angle-double-up"></i></a>
 
+		<!--- JQuery min js --->
+		<script src="{{ asset('virtual/assets/plugins/jquery/jquery.min.js') }}"></script>
+	
 		<!--- Bootstrap Bundle js --->
 		<script src="{{ asset('virtual/assets/plugins/bootstrap/popper.min.js') }}"></script>
 		<script src="{{ asset('virtual/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-
+	
 		<!--- Ionicons js --->
 		<script src="{{ asset('virtual/assets/plugins/ionicons/ionicons.js') }}"></script>
-
+	
 		<!--- Moment js --->
 		<script src="{{ asset('virtual/assets/plugins/moment/moment.js') }}"></script>
-
-		<script src="{{ asset('virtual/assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
-
+	
 		<!--- JQuery sparkline js --->
 		<script src="{{ asset('virtual/assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
-        
-		
+	
+	
 		<!--- P-scroll js --->
 		<script src="{{ asset('virtual/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 		<script src="{{ asset('virtual/assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
-		
+	
 		<!--- Sidebar js --->
 		<script src="{{ asset('virtual/assets/plugins/side-menu/sidemenu.js') }}"></script>
-		
+	
 		<!--- sticky js --->
 		<script src="{{ asset('virtual/assets/js/sticky.js') }}"></script>
-		
+	
 		<!--- Right-sidebar js --->
 		<script src="{{ asset('virtual/assets/plugins/sidebar/sidebar.js') }}"></script>
 		<script src="{{ asset('virtual/assets/plugins/sidebar/sidebar-custom.js') }}"></script>
-		
-		
+	
+	
 		<!--- Eva-icons js --->
 		<script src="{{ asset('virtual/assets/js/eva-icons.min.js') }}"></script>
-
-		<!-- SWEET-ALERT JS -->
-		<script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-		<script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
+	
+		<script src="{{ asset('landingpage/js/wow.min.js') }}"></script>
+		<script src="{{ asset('landingpage/js/paralax.min.js') }}"></script>
+		<script src="{{ asset('landingpage/js/swiper.min.js') }}"></script>
+		<script src="{{ asset('landingpage/js/time-circle.js') }}"></script>
+		<script src="{{ asset('landingpage/js/skill.bars.jquery.js') }}"></script>
+		<script src="{{ asset('landingpage/js/waypoints.min.js') }}"></script>
+		<script src="{{ asset('landingpage/js/jquery.counterup.min.js') }}"></script>
+		<script src="{{ asset('landingpage/js/jquery.magnific-popup.min.js') }}"></script>
+		<script src="{{ asset('landingpage/js/main.js') }}"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script src="{{ asset('landingpage/js/sweetalert/sweetalert.min.js') }}"></script>
 
 		<script>
 			$.ajaxSetup({
@@ -149,6 +159,35 @@
 				});
 			});
 
+			function ajaxSelect2Initiator(elm, modal, url) {
+            return $('#' + elm).select2({
+                width: '100%'
+                , dropdownParent: modal ? $(this).parent() : ''
+                , ajax: {
+                    url: url
+                    , dataType: 'json'
+                    , type: "GET"
+                    , delay: 500
+                    , quietMillis: 500
+                    , data: function(term) {
+                        searchData = term.term;
+                        return {
+                            term: term
+                        };
+                    }
+                    , processResults: function(response) {
+                        return {
+                            results: $.map(response, function(item) {
+                                return {
+                                    text: item.name
+                                    , id: item.id
+                                	}
+								})
+							};
+						}
+					}
+				});
+			}
 
 			let type = false;
 			if ('{{session()->has("success")}}' == true) type = 'success';
@@ -161,6 +200,29 @@
 					icon: `${type}`,
 					confirmButtonColor: "#556ee6",
 				})
+			}
+
+			function toast(message) {
+            Swal.fire({
+                toast: true
+                , position: 'top-end'
+                , icon: 'error'
+                , title: 'ERROR !'
+                , text: message
+                , showConfirmButton: false
+                , timer: 2000
+				});
+			}
+
+			function validateUrl(string) {
+				if(!string) return 'javascript:void(0)';
+				
+				try {
+					new URL(string);
+					return string;
+				} catch (err) {
+					return '//'+string;
+				}
 			}
 
 
