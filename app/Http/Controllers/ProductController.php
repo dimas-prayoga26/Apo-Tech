@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -59,10 +60,16 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+        {   
+            Product::find($id)->delete();
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Success Delete Category and its Products!',
+            ]);
+        }
+
+
 
     public function datatable(Request $request){
         $data = Product::with('category')->get();
@@ -71,5 +78,19 @@ class ProductController extends Controller
         // $data = $data->get();
         
         return DataTables::of($data)->make();
+    }
+
+    public function prescription(Request $request)
+    {
+
+        // dd($request);
+        Product::find($request->id)->update([
+            'is_need_prescription'   => $request->state,
+        ]);
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Success Update prescription!',
+        ]);
     }
 }

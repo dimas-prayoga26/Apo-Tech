@@ -288,7 +288,7 @@
                                     <h6 class="px-4">{{ Auth::user()->username }}</h6><span>{{ Auth::user()->userApotech()->first()->first_name }} {{ Auth::user()->userApotech()->first()->last_name }}</span>
                                 </div>
                                 <a class="dropdown-item"><i class="far fa-user"></i>My Profile</a>
-                                <a class="dropdown-item" href1="{{ route('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                                <a class="dropdown-item" href="{{ route('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
                             </div>
                         </div>
                         <div class="dropdown main-header-message right-toggle">

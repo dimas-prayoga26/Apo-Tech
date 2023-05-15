@@ -96,8 +96,9 @@
                 targets: 2,
                     render: function(data, type, full, meta) {
                         let cat = '';
-                            cat = `<a class="badge bg-primary me-1" href="javascript:void(0);">${data.category ? data.category.name : ''}</a>`;
-                        return cat;
+                            cat = `<a class="badge bg-primary me-1" href="javascript:void(0);">${data}</a>`;
+
+                        return (cat);
                 }, 
             },
             {
@@ -120,9 +121,9 @@
                         // data.map(function(item){
                             // state += `<a class="btn btn-icon btn-success me-1" href="javascript:void(0);"></a>`;
                             if(data == 1){
-                                state = `<a class="badge bg-success me-1" href="javascript:void(0);">Is Prescription</a>`;
+                                state = `<a class="badge bg-danger me-1" href="javascript:void(0);">Is Prescription</a>`;
                             }else{
-                                state = `<a class="badge bg-warning me-1" href="javascript:void(0);">Not Prescription</a>`;
+                                state = `<a class="badge bg-success me-1" href="javascript:void(0);">Not Prescription</a>`;
                             }
 
                         return state;
@@ -131,10 +132,16 @@
             {
                 targets: -1,
                 render: function(data, type, full, meta) {
-                        state = `<button type="button" data-id="${data}" data-update="1" class="btn btn-icon btn-success btn-Prescription" title="Is Prescription"><span class="fe fe-check"> </span></button>`;
+
+                    let role = `{{ getRoleName() }}`;
+                    
+                    let state = ``;
+                    if(role == 'admin'){
+                        state = `<button type="button" data-id="${data}" data-update="1" class="btn btn-icon btn-warning btn-prescription" title="Is Prescription"><span class="fe fe-check"> </span></button>`;
                         
-                       
-                            state = `<button type="button" data-id="${data}" data-update="0" class="btn btn-icon btn-warning btn-Prescription" title="Not Prescription"><span class="fe fe-x-circle"> </span></button>`;
+                        if(!!+full.is_need_prescription)
+                            state = `<button type="button" data-id="${data}" data-update="0" class="btn btn-icon btn-success btn-prescription" title="Not Prescription"><span class="fe fe-x-circle"> </span></button>`;
+                    }
 
                     let btn = `
                     <div class="btn-list">
@@ -164,6 +171,79 @@
                 sSearch: '',
             }
         });
+    
+        $(document).on('click', '.btn-prescription', function(){
+            let id = $(this).data('id')
+            let state = $(this).data('update')
+
+            Swal.fire({
+                title: "Yakin ingin mengupdate status data ini?",
+                text: "Anda bisa merubah status prescription data ini kapanpun.",
+                icon: "warning",
+                showCancelButton  : true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor : "#d33",
+                confirmButtonText : "Ya!"
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url    : `{{ route('product.is-prescription') }}`,
+                        type   : "POST",
+                        data: { 
+                            "id": id,
+                            "state": state,
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            table.ajax.reload();
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Data berhasil diupdate',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
+                }
+            })
+        })
     })
+
+    function destroy(id) {
+        var url = "{{ route('product.destroy',":id") }}";
+        url = url.replace(':id', id);
+    
+        Swal.fire({
+            title: "Yakin ingin menghapus data ini?",
+            text: "Ketika data terhapus, anda tidak bisa mengembalikan data tersbut!",
+            icon: "warning",
+            showCancelButton  : true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor : "#d33",
+            confirmButtonText : "Ya, Hapus!"
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url    : url,
+                    type   : "delete",
+                    data: { "id":id },
+                    dataType: "JSON",
+                    success: function(data) {
+                        table.ajax.reload();
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Data berhasil dihapus',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+            }
+        })
+    } 
     </script>
 @endsection

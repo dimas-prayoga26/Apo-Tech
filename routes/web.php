@@ -75,6 +75,7 @@ Route::group(['middleware' => ['role:admin|seller|courier']], function () {
 
     Route::get('product/datatable', [ProductController::class, 'datatable'])->name('product.datatable');
     Route::resource('product', ProductController::class);
+    Route::post('product/prescription', [ProductController::class, 'prescription'])->name('product.is-prescription');
 });
 
 
