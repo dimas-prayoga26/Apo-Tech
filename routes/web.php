@@ -71,6 +71,7 @@ Route::group(['middleware' => ['role:admin|seller|courier']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('product-category/datatable', [ProductCategoryController::class, 'datatable'])->name('product-category.datatable');
+    Route::get('product-category/select-data', [ProductCategoryController::class, 'select2'])->name('product-category.select2');
     Route::resource('product-category', ProductCategoryController::class);
 
     Route::get('product/datatable', [ProductController::class, 'datatable'])->name('product.datatable');

@@ -101,9 +101,10 @@ class ProductCategoryController extends Controller
     }
 
     public function select2(Request $request){
-        $query = $request->term['term'] ??'';
+        $query = $request->term['term'] ?? '';
         $data = Category::where('name', 'LIKE', "%$query%")->get();
-        
+
+        // dd($data);
         return response()->json($data);
     }
 }

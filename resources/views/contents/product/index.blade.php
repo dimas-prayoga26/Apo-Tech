@@ -136,7 +136,7 @@
                     let role = `{{ getRoleName() }}`;
                     
                     let state = ``;
-                    if(role == 'admin'){
+                    if(role == 'seller'){
                         state = `<button type="button" data-id="${data}" data-update="1" class="btn btn-icon btn-warning btn-prescription" title="Is Prescription"><span class="fe fe-check"> </span></button>`;
                         
                         if(!!+full.is_need_prescription)
