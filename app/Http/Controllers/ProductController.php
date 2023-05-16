@@ -77,15 +77,6 @@ class ProductController extends Controller
                 ]+$image
             );
             
-            // foreach(($request->category_id ?? []) as $item){
-            //     Category::create([
-            //         'product_id'               => $product->id,
-            //         'category_id'              => $item
-            //     ]);
-
-            // }
-            // dd($request);
-            
             foreach($request->file('product_image') ?? [] as $key => $item){
                 $fileName[$key] = md5($item->getClientOriginalName(). rand(rand(231, 992), 123882)). "." . $item->getClientOriginalExtension();
                 ProductImage::create([
@@ -122,9 +113,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $category = Category::get();
+        $data['product'] = Product::with(['category', 'images'])->find($id);
+        return view('contents.product.edit', $data , compact('category'));
     }
 
     /**
