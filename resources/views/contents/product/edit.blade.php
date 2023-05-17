@@ -54,14 +54,13 @@
                                 @endforeach
                             </div>
                         </div>
-                        <small class="text-danger">Recomended image svg, 500 x 800</small>
+                        <small class="text-danger">Tidak boleh ada column image yang kosong!</small>
                     </div>
                     {{-- @dd($product->category->name) --}}
                     <div class="form-group">
                         <label class="form-label text-dark">Category</label>
                         <select id="category" name="category_id[]" class="form-control select2 form-select" multiple="multiple" required>
                             @foreach ($category as $item)
-
                                 <option value="{{ $item->id }}" {{ $item->id == $product->category->id ? 'selected' : ''}}>{{ $item->name }}</option>
                             @endforeach
                         </select>
