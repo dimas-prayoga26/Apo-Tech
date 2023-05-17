@@ -69,6 +69,7 @@
                 </div>
                 <div class="card-footer">
                     <button id="btn-submit" class="btn btn-primary float-end my-2">Save</button>
+                    <a class="btn btn-primary float-end my-2" style="margin-right:10px;" href="{{ route('product.index') }}">Cancel</a>
                 </div>
             </form>
         </div>
