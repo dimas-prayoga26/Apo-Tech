@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <small class="text-danger">Recomended image svg, 500 x 800</small>
+                        <small class="text-danger">Tidak boleh ada column image yang kosong!</small>
                     </div>
                     <div class="form-group">
                         <label class="form-label text-dark">Category</label>
