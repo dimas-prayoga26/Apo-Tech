@@ -22,6 +22,7 @@ Route::post('/login', [AuthController::class, 'auth']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/product/search', [ProductController::class, 'search']);
 Route::apiResource('/product', ProductController::class);
 Route::get('/category/{id?}/products', [CategoryController::class, 'showProducts']);
 Route::apiResource('/category', CategoryController::class);

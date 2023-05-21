@@ -13,8 +13,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::with(['images', 'user.userDetail', 'category'])->get();
-        return $this->okResponse('Success',$data);
+        $data = Product::with(['images', 'user.userDetail', 'category']);
+        if(request('search')){
+            $data = Product::with(['images', 'user.userDetail', 'category'])->where('name', 'like', '%'.request('search').'%')->orWhere('description', 'like', '%'.request('search').'%');
+        }
+        return $this->okResponse('Success',$data->get());
     }
 
     /**
@@ -47,5 +50,14 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $data = null;
+        if ($request->search != null || $request->search != '') {
+            $data = Product::with(['images', 'user.userDetail', 'category'])->where('name', 'like', '%'.$request->search.'%')->orWhere('description', 'like', '%'.$request->search.'%')->get();
+        }
+        return $this->okResponse('Success',$data);
     }
 }

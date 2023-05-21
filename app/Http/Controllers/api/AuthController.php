@@ -13,12 +13,16 @@ use Illuminate\Support\Facades\Mail;
 class AuthController extends Controller
 {
     protected function auth(Request $request){
-        $loginData = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'fcm_token' => 'nullable',
         ]);
 
-        if(Auth::attempt($loginData)){
+        if(Auth::attempt($request->only('email', 'password'))){
+            if ($request->filled('fcm_token')) {
+                Auth::user()->update(['fcm_token' => $request->fcm_token]);
+            }
             $token = Auth::user()->createToken('authToken')->plainTextToken;
             $user = array_merge(Auth::user()->toArray(), ['token' => $token]);
             return $this->okResponse('Login berhasil!', $user);
