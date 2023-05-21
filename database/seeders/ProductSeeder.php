@@ -20,9 +20,15 @@ class ProductSeeder extends Seeder
     {
         try {
             DB::beginTransaction();
-
+            $img = ['assets-image/p1.jpeg', 'assets-image/p2.jpeg', 'assets-image/p3.jpeg', 'assets-image/p4.jpeg', 'assets-image/p5.jpeg'];
+            $img2 = ['assets-image/p5.jpeg', 'assets-image/p4.jpeg', 'assets-image/p3.jpeg', 'assets-image/p2.jpeg', 'assets-image/p1.jpeg'];
             $category = Category::create([
-                'name' => 'Suplement'
+                'name' => 'Suplement',
+                'image' => 'assets-image/p5.jpeg'
+            ]);
+            $category1 = Category::create([
+                'name' => 'Vitamin',
+                'image' => 'assets-image/p1.jpeg'
             ]);
 
             $user = User::role('admin')->first();
@@ -37,10 +43,46 @@ class ProductSeeder extends Seeder
                 'price' => 150000,
             ]);
 
-            ProductImage::create([
-                'image' => 'assets-image\bgNew.png',
-                'product_id' => $product->id
+            $product1 = Product::create([
+                'category_id' => $category->id,
+                'user_id' => $user->id,
+                'name' => 'Saw Palmeto',
+                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat necessitatibus reprehenderit aliquam deserunt explicabo eveniet ipsum adipisci natus incidunt similique. Voluptas quas corrupti cupiditate aut qui! Itaque quo, maxime, molestiae a fugit quaerat tempora assumenda optio officiis eum cum. Optio quae accusamus tenetur, assumenda debitis porro atque sunt repellendus modi.',
+                'stock' => 20,
+                'is_need_prescription' => false,
+                'price' => 150000,
             ]);
+
+            $product2 = Product::create([
+                'category_id' => $category->id,
+                'user_id' => $user->id,
+                'name' => 'Finasteride',
+                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat necessitatibus reprehenderit aliquam deserunt explicabo eveniet ipsum adipisci natus incidunt similique. Voluptas quas corrupti cupiditate aut qui! Itaque quo, maxime, molestiae a fugit quaerat tempora assumenda optio officiis eum cum. Optio quae accusamus tenetur, assumenda debitis porro atque sunt repellendus modi.',
+                'stock' => 20,
+                'is_need_prescription' => false,
+                'price' => 150000,
+            ]);
+
+            foreach($img as $data){
+                ProductImage::create([
+                    'image' => $data,
+                    'product_id' => $product->id
+                ]);
+            }
+
+            foreach($img as $data){
+                ProductImage::create([
+                    'image' => $data,
+                    'product_id' => $product2->id
+                ]);
+            }
+
+            foreach ($img2 as $data) {
+                ProductImage::create([
+                    'image' => $data,
+                    'product_id' => $product1->id
+                ]);
+            }
 
 
             DB::commit();

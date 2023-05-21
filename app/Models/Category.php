@@ -18,7 +18,14 @@ class Category extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['image_url'];
+
     public function products(){
         return $this->hasMany(Product::class);
+    }
+
+    protected function getImageUrlAttribute($value)
+    {
+        return url($this->image);
     }
 }
