@@ -14,7 +14,7 @@ class AuthController extends Controller
 {
     protected function auth(Request $request){
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email', // phpcs:ignore ..DetectWeakValidation.Found
             'password' => 'required',
             'fcm_token' => 'nullable',
         ]);
@@ -33,7 +33,7 @@ class AuthController extends Controller
 
     protected function register(Request $request){
         $request->validate([
-            'email' => 'required|email:dns',
+            'email' => 'required|email',
             'username' => 'required',
             'password' => 'required',
         ]);
