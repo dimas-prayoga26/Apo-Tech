@@ -1,6 +1,10 @@
 <?php
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+
+
+return (string) Str::uuid();
 
 function formatRupiah($angka, $text = true){
 	return ($text ? "Rp " : '') . number_format($angka,0,',','.');

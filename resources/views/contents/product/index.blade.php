@@ -102,6 +102,18 @@
                 }, 
             },
             {
+                targets: 4, // Menggunakan indeks 3 untuk kolom keempat (indeks dimulai dari 0)
+                createdCell: function(td, cellData, rowData, row, col) {
+                    if (col === 4) {
+                        let price = parseInt(cellData).toLocaleString('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        });
+                        $(td).text(price);
+                    }
+                }
+            },
+            {
                 targets: 5,
                 createdCell: function(td, cellData, rowData, row, col) {
                     $(td).html($(td).text())

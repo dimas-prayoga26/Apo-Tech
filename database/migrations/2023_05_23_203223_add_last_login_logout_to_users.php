@@ -9,20 +9,11 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->foreignUuid('status_user_id')->constrained();
-            $table->string('username')->unique();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->enum('status', ['login', 'logout'])->default('logout');
         });
 
         // $triggerSql = "
@@ -48,10 +39,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         // $triggerSql = "
         //     DROP TRIGGER IF EXISTS after_login_trigger;
@@ -60,6 +49,8 @@ return new class extends Migration
 
         // DB::unprepared($triggerSql);
 
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 };
