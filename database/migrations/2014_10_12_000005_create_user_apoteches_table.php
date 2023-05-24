@@ -17,10 +17,12 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('phone_number')->nullable();
-            $table->unsignedBigInteger('address_id')->nullable();
+            $table->foreignId('district_id')->nullable();
+            $table->string('address')->nullable();
+            $table->double('latitude')->nullable();
+            $table->double('longitude')->nullable();
             $table->string('image')->nullable();
             $table->string('licenses')->nullable();
-            $table->boolean('is_main')->default(0);
             $table->string('registered_at');
             $table->timestamps();
         });

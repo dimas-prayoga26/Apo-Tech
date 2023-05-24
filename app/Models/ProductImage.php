@@ -16,9 +16,21 @@ class ProductImage extends Model
     // In Laravel 6.0+ make sure to also set $keyType
     protected $keyType = 'string';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $guarded = [];
+
+    protected $appends = ['image_url'];
 
     public function product(){
         return $this->belongsTo(Product::class);
+    }
+
+    protected function getImageUrlAttribute($value)
+    {
+        return url($this->image);
     }
 }
