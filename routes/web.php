@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\landingpage\AddressController;
+use App\Http\Controllers\landingpage\ProfileController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -77,6 +79,17 @@ Route::group(['middleware' => ['role:admin|seller|courier']], function () {
     Route::get('product/datatable', [ProductController::class, 'datatable'])->name('product.datatable');
     Route::resource('product', ProductController::class);
     Route::post('product/prescription', [ProductController::class, 'prescription'])->name('product.is-prescription');
+    Route::post('product/deleteImgDropify', [ProductController::class, 'deleted_dropify'])->name('product.deleted_dropify');
+    
+});
+
+Route::group(['middleware' => ['role:buyer']] ,function(){
+    Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
+    Route::resource('address',AddressController::class);
+
+    Route::get('pesanan/detail', function(){
+        return view('landing-page.profile.product-order-information.show');
+    });
 });
 
 

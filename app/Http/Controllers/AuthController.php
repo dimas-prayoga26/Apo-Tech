@@ -93,16 +93,6 @@ class AuthController extends Controller
         // Refresh user roles
         $user = Auth::user();
 
-        try {
-            DB::beginTransaction();
-            User::find($user->id)->update(['status' => 'login']);
-            // $user->save();
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e->getMessage());
-        }
-
         if ($user->hasRole('admin')) {
             $user->syncRoles(['admin']);
             return redirect()->route('dashboard');
@@ -111,7 +101,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         } elseif ($user->hasRole('buyer')) {
             $user->syncRoles(['buyer']);
-            dd('haloo buyer');
+            return redirect()->route('home.index');
         } elseif ($user->hasRole('courier')) {
             $user->syncRoles(['courier']);
             return redirect()->route('dashboard');
@@ -182,17 +172,6 @@ class AuthController extends Controller
     }
 
     public function logout(){
-
-        $user = Auth::user();
-        try {
-            DB::beginTransaction();
-            User::find($user->id)->update(['status' => 'logout']);
-            // $user->save();
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e->getMessage());
-        }
 
         Auth::logout();
         

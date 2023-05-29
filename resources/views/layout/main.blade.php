@@ -93,50 +93,50 @@
 
 		<!--- JQuery min js --->
 		<script src="{{ asset('virtual/assets/plugins/jquery/jquery.min.js') }}"></script>
-	
-		<!--- Bootstrap Bundle js --->
-		<script src="{{ asset('virtual/assets/plugins/bootstrap/popper.min.js') }}"></script>
-		<script src="{{ asset('virtual/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-	
-		<!--- Ionicons js --->
-		<script src="{{ asset('virtual/assets/plugins/ionicons/ionicons.js') }}"></script>
-	
-		<!--- Moment js --->
-		<script src="{{ asset('virtual/assets/plugins/moment/moment.js') }}"></script>
-	
-		<!--- JQuery sparkline js --->
-		<script src="{{ asset('virtual/assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
-	
-	
-		<!--- P-scroll js --->
-		<script src="{{ asset('virtual/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-		<script src="{{ asset('virtual/assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
-	
-		<!--- Sidebar js --->
-		<script src="{{ asset('virtual/assets/plugins/side-menu/sidemenu.js') }}"></script>
-	
-		<!--- sticky js --->
-		<script src="{{ asset('virtual/assets/js/sticky.js') }}"></script>
-	
-		<!--- Right-sidebar js --->
-		<script src="{{ asset('virtual/assets/plugins/sidebar/sidebar.js') }}"></script>
-		<script src="{{ asset('virtual/assets/plugins/sidebar/sidebar-custom.js') }}"></script>
-	
-	
-		<!--- Eva-icons js --->
-		<script src="{{ asset('virtual/assets/js/eva-icons.min.js') }}"></script>
-	
-		<script src="{{ asset('landingpage/js/wow.min.js') }}"></script>
-		<script src="{{ asset('landingpage/js/paralax.min.js') }}"></script>
-		<script src="{{ asset('landingpage/js/swiper.min.js') }}"></script>
-		<script src="{{ asset('landingpage/js/time-circle.js') }}"></script>
-		<script src="{{ asset('landingpage/js/skill.bars.jquery.js') }}"></script>
-		<script src="{{ asset('landingpage/js/waypoints.min.js') }}"></script>
-		<script src="{{ asset('landingpage/js/jquery.counterup.min.js') }}"></script>
-		<script src="{{ asset('landingpage/js/jquery.magnific-popup.min.js') }}"></script>
-		<script src="{{ asset('landingpage/js/main.js') }}"></script>
-		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-		<script src="{{ asset('landingpage/js/sweetalert/sweetalert.min.js') }}"></script>
+
+    <!--- Bootstrap Bundle js --->
+    <script src="{{ asset('virtual/assets/plugins/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('virtual/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!--- Ionicons js --->
+    <script src="{{ asset('virtual/assets/plugins/ionicons/ionicons.js') }}"></script>
+
+    <!--- Moment js --->
+    <script src="{{ asset('virtual/assets/plugins/moment/moment.js') }}"></script>
+
+    <!--- JQuery sparkline js --->
+    <script src="{{ asset('virtual/assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+
+
+    <!--- P-scroll js --->
+    <script src="{{ asset('virtual/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('virtual/assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
+
+    <!--- Sidebar js --->
+    <script src="{{ asset('virtual/assets/plugins/side-menu/sidemenu.js') }}"></script>
+
+    <!--- sticky js --->
+    <script src="{{ asset('virtual/assets/js/sticky.js') }}"></script>
+
+    <!--- Right-sidebar js --->
+    <script src="{{ asset('virtual/assets/plugins/sidebar/sidebar.js') }}"></script>
+    <script src="{{ asset('virtual/assets/plugins/sidebar/sidebar-custom.js') }}"></script>
+
+
+    <!--- Eva-icons js --->
+    <script src="{{ asset('virtual/assets/js/eva-icons.min.js') }}"></script>
+
+    <script src="{{ asset('landingpage/js/wow.min.js') }}"></script>
+    <script src="{{ asset('landingpage/js/paralax.min.js') }}"></script>
+    <script src="{{ asset('landingpage/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('landingpage/js/time-circle.js') }}"></script>
+    <script src="{{ asset('landingpage/js/skill.bars.jquery.js') }}"></script>
+    <script src="{{ asset('landingpage/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('landingpage/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('landingpage/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('landingpage/js/main.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ asset('landingpage/js/sweetalert/sweetalert.min.js') }}"></script>
 
 		<script>
 			$.ajaxSetup({

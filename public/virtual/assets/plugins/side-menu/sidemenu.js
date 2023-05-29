@@ -141,10 +141,17 @@ if ($('.sub-side-menu__item').hasClass('active')) {
 }
 
 
-let slideLeft = document.querySelector(".slide-left");
-let slideRight = document.querySelector(".slide-right");
-slideLeft.addEventListener("click", e =>  slideClick(), true)
-slideRight.addEventListener("click", e => slideClick(), true)
+document.addEventListener("DOMContentLoaded", function() {
+    let slideLeft = document.querySelector(".slide-left");
+    let slideRight = document.querySelector(".slide-right");
+  
+    if (slideLeft && slideRight) {
+      slideLeft.addEventListener("click", slideClick, true);
+      slideRight.addEventListener("click", slideClick, true);
+    } else {
+      console.log("Elemen tidak ditemukan");
+    }
+  });
 
 // used to remove is-expanded class and remove class on clicking arrow buttons
 function slideClick() {

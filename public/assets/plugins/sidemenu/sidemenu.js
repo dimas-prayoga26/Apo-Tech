@@ -271,9 +271,7 @@ function icontext() {
 
 let slideLeft = document.querySelector(".slide-left");
 let slideRight = document.querySelector(".slide-right");
-slideLeft.addEventListener("click", () => {
-    slideClick()
-}, true)
+slideLeft.addEventListener("click", () => { slideClick() }, true)
 slideRight.addEventListener("click", () => { slideClick() }, true)
 
 // used to remove is-expanded class and remove class on clicking arrow buttons

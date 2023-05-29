@@ -98,6 +98,13 @@
     $(document).ready(function () {
         
         $('.dropify').dropify();
+  
+        $('.dropify-clear').click(function(e){
+            e.preventDefault();
+            alert('Remove Hit');
+            
+        });
+        
         $('#summernote').summernote();
 
         // let data;

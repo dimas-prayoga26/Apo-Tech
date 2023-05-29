@@ -280,7 +280,7 @@
                         </div>
                         <div class="dropdown main-profile-menu nav nav-item nav-link">
 
-                            <a class="profile-user d-flex" href=""><img src="{{  asset(Auth::user()->userApotech()->image ?? 'virtual/assets/img/default-user.webp')  }}" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
+                            <a class="profile-user d-flex" href=""><img src="{{  asset(Auth::user()->userApotech()->image ?? 'virtual/assets/img/default-user.webp')  }}" alt="user-img" class="rounded-circle mCS_img_loaded"></img><span></span></a>
 
                             <div class="dropdown-menu">
                                 <div class="main-header-profile header-img">

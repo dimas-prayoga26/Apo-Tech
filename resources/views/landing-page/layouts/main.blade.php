@@ -33,19 +33,36 @@
             </form>
           </li>
         </ul>
-        <ul class="navbar-nav ms-auto" style="margin-right: 50px">
-          <li class="nav-item ms-lg-5" style="margin-right: -25px">
-            <a class="nav-link" href="#"><button class="btn btn-outline-info btn-outline-dark"><i class="fas fa-basket-shopping"></i></button></a>
+        <ul class="navbar-nav mx-auto" style="margin-right: 50px">
+          <li class="nav-item" style="margin-right: 20px">
+            <a class="nav-link" href="#"><button class="btn btn-outline-info btn-outline-dark" type="submit"><i class="fas fa-solid fa-magnifying-glass"></i></button></a>
           </li>
-          <li class="nav-item ms-lg-5" style="margin-right: 50px">
-            <a class="nav-link" href="#"
-              ><button class="btn btn-outline-info btn-outline-dark"><i class="fa-sharp fa-regular fa-bell"></i></button
-            ></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('auth.login') }}">
-              <button class="btn btn-outline-info btn-outline-dark"><i class="fas fa-user me-2"></i>Login</button>
-            </a>
+          @auth
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{-- <img src="{{ asset(auth()->user()->userApotech->image ?? 'virtual/assets/img/default-user.webp') }}"  width="35" height="35" class="rounded-circle" alt=""> --}}
+                  <img src="{{  asset(Auth::user()->userApotech()->image ?? 'virtual/assets/img/default-user.webp')  }}"  width="40" height="40" class="rounded-circle" alt="">
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ route('profile.index') }}">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Whitelist</a></li>
+                  <li><a class="dropdown-item" href="#">Transactions</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)"
+                    onclick="document.getElementById('formLogout').submit()">Logout</a></li>
+                </ul>
+                <form action="{{ route('auth.logout') }}" method="get" id="formLogout">
+                    @csrf
+                </form>
+              </li>
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('auth.login') }}">
+                    <button class="btn btn-outline-info btn-outline-dark">
+                        <i class="fas fa-user me-2"></i>Login
+                    </button>
+                </a>
+            </li>
+            @endauth
           </li>
         </ul>
       </div>
