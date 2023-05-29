@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item mr-5 mt-1">
-            <a class="nav-link active" aria-current="page" href="#" style="margin-right: 100px"><i class="fas fa-home me-2"></i>Beranda</a>
+            <a class="nav-link active" aria-current="page" href="#" style="margin-right: 100px; display:flex; align-items:center; font-size: 20px;"><i class="fas fa-home me-2" style="font-size: 20px;"></i>Beranda</a>
           </li>
           <li class="nav-item mt-2">
             <form class="d-flex">
@@ -34,8 +34,8 @@
           </li>
         </ul>
         <ul class="navbar-nav mx-auto" style="margin-right: 50px">
-          <li class="nav-item" style="margin-right: 20px">
-            <a class="nav-link" href="#"><button class="btn btn-outline-info btn-outline-dark" type="submit"><i class="fas fa-solid fa-magnifying-glass"></i></button></a>
+          <li class="nav-item" style="margin-right: 20px; align-items:center; display:flex; margin-bottom:7px;">
+            <button class="btn btn-outline-info btn-outline-dark d-flex" type="submit" style="height:35px; width:45px; justify-content:center"><i class="fa-solid fa-cart-shopping" style="justify-content:center; font-size:23px"></i></button>
           </li>
           @auth
             <li class="nav-item dropdown ">
@@ -57,7 +57,7 @@
             @else
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('auth.login') }}">
-                    <button class="btn btn-outline-info btn-outline-dark">
+                    <button class="btn btn-outline-info btn-outline-dark" style="display: flex; margin-bottom:7px">
                         <i class="fas fa-user me-2"></i>Login
                     </button>
                 </a>
