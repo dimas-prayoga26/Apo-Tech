@@ -114,20 +114,22 @@ class UserSeeder extends Seeder
                     'last_name'                 => 'Seller',
                     'phone_number'              => '12345',
                     'image'                     => 'images/dimasSeller.jpg',
-                    'latitude'      => '-6.425721',
-                    'longitude'     => '108.081242',
-                    'address'       => 'Desa gabus wetan No.05',
-                    'registered_at'             => date('Y-m-d')
+                    'latitude'                  => '-6.425721',
+                    'longitude'                 => '108.081242',
+                    'address'                   => 'Desa gabus wetan No.05',
+                    'registered_at'             => date('Y-m-d'),
+                    'jenis_kelamin'             => 'Laki-Laki'
                 ],[
                     'user_id'                   => $Users_Buyer->id,
                     'first_name'                => 'Its',
                     'last_name'                 => 'Buyer',
                     'phone_number'              => '67890',
                     'image'                     => 'images/dimasSeller.jpg',
-                    'latitude'      => '-6.425721',
-                    'longitude'     => '108.081242',
-                    'address'       => 'Desa gabus wetan No.05',
-                    'registered_at'             => date('Y-m-d')
+                    'latitude'                  => '-6.425721',
+                    'longitude'                 => '108.081242',
+                    'address'                   => 'Desa gabus wetan No.05',
+                    'registered_at'             =>  date('Y-m-d'),
+                    'jenis_kelamin'             => 'Perempuan'
                 ],
             ];
             

@@ -10,12 +10,12 @@
                     <div class="col-9">
                         <a href="/profilakun" class="font-weight-bold f-size-14"
                             style="text-decoration: none;color:black;">
-                            <div class="text-truncate col-12 p-0 m-0">Example
+                            <div class="text-truncate col-12 p-0 m-0">{{ Auth::user()->userApotech()->first()->first_name }} {{ Auth::user()->userApotech()->first()->last_name }}
 
                             </div>
                         </a>
                         <span class="col-12 text-truncate m-0 mt-1 p-0"
-                            style="font-size: 10px;">example@gmail.com</span>
+                            style="font-size: 12px;">{{ auth()->user()->email }}</span>
                     </div>
                 </div>
             </div>

@@ -26,9 +26,6 @@
                                                 <a class="nav-link text-dark"
                                                     href="{{ route('address.index') }}">Address</a>
                                             </li>
-                                            <li class="nav-item mx-4">
-                                                <a class="nav-link text-dark" href="#">Notification</a>
-                                            </li>
                                         </ul>
                                     </div>
                                     <hr>
@@ -41,47 +38,44 @@
                                         <table class="table table-borderless">
                                             <thead>
                                                 <tr>
+                                                    <th>Pin</th>
                                                     <th>Penerima</th>
                                                     <th>Alamat Pengiriman</th>
                                                     <th>Daerah Pengiriman</th>
-                                                    <th>Pin Point</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
+                                                    <td class="text-center">
+                                                        <input type="radio" id="age1" name="age" value="30">
+                                                    </td>
                                                     <td class="text-left">
                                                         {{-- <span class="background-tosca text-primary btn mb-2">Utama</span> --}}
                                                         {{-- <br> --}}
-                                                        <span class="text-center small">Nurul
+                                                        <span class="text-center">Nurul
                                                             <br>
                                                             0895333448202
                                                         </span>
                                                     </td>
-                                                    <td>Rumah
+                                                    <td>
+                                                        Rumah
                                                         Legok blok kolot, LOHEBNER
                                                         KABUPATEN INDRAMAYU,
-                                                        JAWA BARAT</td>
+                                                        JAWA BARAT
+                                                    </td>
                                                     <td>
                                                         JAWA BARAT, KABUPATEN
                                                         INDRAMAYU, LOHBENER
                                                     </td>
                                                     <td class="d-flex justify-content-between">
-                                                        {{-- <img src="{{ asset('landingpage/images/Pin.png') }}" alt=""
-                                                            class="img-fluid" style="max-height: 35px"> --}}
-
                                                         <div class="">
-                                                            {{-- <button
-                                                                class="btn mb-2 btn-sm text-white background-tosca small">Alamat
-                                                                Utama</button> --}}
                                                             <a href="{{ route('address.edit',1) }}" class="btn btn-sm mb-2 btn-primary">
                                                                 <i class="fas fa-edit"></i> Ubah
                                                             </a>
-                                                            <form action="" method="post">
-                                                                @csrf
-                                                                <button class="btn btn-sm mb-2 btn-primary">
-                                                                    <i class="fas fa-trash"></i> Hapus
-                                                                </button>
-                                                            </form>
+                                                            <a href="{{ route('address.edit',1) }}" class="btn btn-sm mb-2 btn-danger">
+                                                                <i class="fas fa-trash"></i> Hapus
+                                                            </a>
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -57,7 +57,7 @@
                     <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                        <form id="form" method="POST">
+                        <form id="form" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                             {{-- <label for="id" class="form-label text-dark">Name</label> --}}
@@ -216,16 +216,13 @@
 
             var id = $('#id').val();
             var form = $('#form')[0];
-            var name = $('#name').val();
+            
             var formData = new FormData(form);
-
+            
             // append the image file to FormData object
+            var name = $('#name').val();
             var image = $('#image')[0].files[0];
-            formData.append('image', image);
-
-            // form.reset();
-
-
+            
             var url = "{{ route('product-category.store') }}";
         
             $('#btnSave').text('Menyimpan...');
@@ -235,7 +232,6 @@
                 url = "{{ route('product-category.update',':id') }}";
                 url = url.replace(':id', id);
                 formData.append('_method', 'PUT');
-                formData.append('name', name);
             }
 
             $.ajax({

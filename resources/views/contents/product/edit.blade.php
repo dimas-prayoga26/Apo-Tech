@@ -116,44 +116,14 @@
         
         $('.dropify').dropify();
 
-        $('.dropify').on('dropify.afterClear', function(event, element) {
-        var filePath = $(event).data('default-file');
-        console.log(filePath);
-
-        // Mengirim permintaan ke server untuk menghapus gambar
-        $.ajax({
-            url: 'product/deleteImgDropify', // Ganti dengan URL endpoint server-side Anda
-            type: 'POST',
-            data: { filePath: filePath },
-            success: function(response) {
-            // Tanggapan dari server setelah berhasil menghapus gambar
-            console.log(response);
-
-            // Menghapus nama gambar dari database
-            $.ajax({
-                url: '/remove-image-from-database', // Ganti dengan URL endpoint server-side Anda
-                type: 'POST',
-                data: { fileName: fileName },
-                success: function(response) {
-                // Tanggapan dari server setelah berhasil menghapus nama gambar dari database
-                console.log(response);
-                },
-                error: function(error) {
-                console.error('Gagal menghapus nama gambar dari database:', error);
-                }
-            });
-            },
-            error: function(error) {
-            console.error('Gagal menghapus gambar:', error);
-            }
-        });
-        });
-
-
-
         $('#summernote').summernote();
 
         // let data;
+        var drEvent = $('.dropify').dropify();
+
+        drEvent.on('dropify.afterClear', function(event, element){
+            alert('File deleted');
+        });
 
         ajaxSelect2Initiator('category', false, `{{ route('product-category.select2') }}`);
 
