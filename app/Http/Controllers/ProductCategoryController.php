@@ -97,51 +97,63 @@ class ProductCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,jpg,png,webp,svg',
+            'image' => 'image|mimes:jpeg,jpg,png,webp,svg',
         ]);
-
+        
         if ($validator->fails()) {
             return redirect()->back()
                 ->with('error', $validator->errors()->first())
                 ->withInput();
         }
-    
+        
         try {
             DB::beginTransaction();
-    
+        
             $categoryProduct = Category::find($id);
-    
+        
             if (!$categoryProduct) {
                 return response()->json(['status' => false, 'message' => 'Data not found!']);
             }
-    
+        
+            $imagePath = $categoryProduct->image; // Default image path
+        
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $path = 'files/category/image/';
-                $nameFile = md5($image->getClientOriginalName(). rand(rand(231, 992), 123882)). "." . $image->getClientOriginalExtension();
-
+                $nameFile = md5($image->getClientOriginalName().rand(rand(231, 992), 123882)).".".$image->getClientOriginalExtension();
+        
                 $image->move($path, $nameFile);
-            } else {
-                $imagePath = $categoryProduct->image;
+        
+                $imagePath = $path.$nameFile; // Update image path only if a new image is provided
+        
+                if ($categoryProduct->image && file_exists($categoryProduct->image)) {
+                    unlink($categoryProduct->image); // Remove the previous image file
+                }
             }
-          
-            $imagePath = $path.$nameFile;
-            if ($categoryProduct->image && file_exists($categoryProduct->image)) {
-                unlink($categoryProduct->image);
+        
+            // Check if the image is empty and the name is not empty
+            if (empty($imagePath) && !empty($request->name)) {
+                $categoryProduct->name = $request->name;
+                $categoryProduct->save();
+        
+                DB::commit();
+        
+                return response()->json(['status' => true, 'message' => 'Data updated successfully']);
             }
-  
+        
             $categoryProduct->image = $imagePath;
             $categoryProduct->name = $request->name;
             $categoryProduct->save();
-    
+        
             DB::commit();
-
-
+        
             return response()->json(['status' => true, 'message' => 'Data updated successfully']);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['status' => false, 'message' => 'Error updating data: '.$e->getMessage()]);
         }
+        
+        
         
       
     }

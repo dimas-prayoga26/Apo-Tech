@@ -25,9 +25,6 @@
                                             <li class="nav-item mx-4">
                                                 <a class="nav-link text-dark" href="{{ route('address.index') }}">Address</a>
                                             </li>
-                                            <li class="nav-item mx-4">
-                                                <a class="nav-link text-dark" href="#">Notification</a>
-                                            </li>
                                         </ul>
                                     </div>
                                     <hr>
@@ -36,8 +33,7 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img src="{{ asset(auth()->user()->userApotech->image ?? 'virtual/assets/img/default-user.webp') }}" alt=""
-                                                    class="img-fluid">
+                                                <img src="{{ asset('virtual/assets/img/default-user.webp') }}" alt="" class="img-fluid">
                                                 <div class="row mt-4">
                                                     <div class="col-md-6">
                                                         <span>File Size : 2 Mb</span>
@@ -46,8 +42,7 @@
                                                     </div>
                                                     <div class="col-md align-self-center">
                                                         <input type="file" class="d-none" id="uploadImage">
-                                                        <label for="uploadImage" class="btn background-tosca">Choose
-                                                            Foto</label>
+                                                        <label for="uploadImage" class="btn btn-primary">ChooseFoto</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,14 +54,14 @@
                                         <tr>
                                             <td style="width:120px">Nama</td>
                                             <td style="width:20px"> : </td>
-                                            {{-- <td>{{ auth()->user()->userApotech }}</td> --}}
+                                            <td>{{ Auth::user()->userApotech()->first()->first_name }} {{ Auth::user()->userApotech()->first()->last_name }}</td>
                                         </tr>
                                         <tr>
                                             <td style="width:120px">Jenis Kelamin</td>
                                             <td style="width:20px"> : </td>
-                                            <td>{{ auth()->user()->userApotech->jeniskelamin ?? '-' }}</td>
+                                            <td>{{ auth()->user()->userApotech->jenis_kelamin ?? '-' }}</td>
                                         </tr>
-                                       </table>
+                                        </table>
                                         <p class="fw-bold mt-3 mb-0">Kontak Personal</p>
                                         <table>
                                             <tr>
@@ -79,7 +74,17 @@
                                                 <td style="width:20px"> : </td>
                                                 <td>{{ auth()->user()->userApotech->phone_number ?? '-' }}</td>
                                             </tr>
-                                           </table>
+                                        </table>
+                                        <p class="fw-bold mt-3 mb-0">Licenses</p>
+                                        <table>
+                                            <tr>
+                                                <a href="" class="" style="font-size: 14px;margin-left:16px;">Upload</a><i class="fa-solid fa-circle-info" style="margin-left: 5px;"></i>
+                                            </tr>
+                                        </table>
+                                        <div class="col-md align-right mt-3">
+                                            <input type="file" class="d-none" id="uploadImage">
+                                            <label for="uploadImage" class="btn btn-primary" style="display: flex; width:100px; justify-content:center">Edit</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

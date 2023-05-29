@@ -26,9 +26,6 @@
                                                 <a class="nav-link text-dark"
                                                     href="{{ route('address.index') }}">Address</a>
                                             </li>
-                                            <li class="nav-item mx-4">
-                                                <a class="nav-link text-dark" href="#">Notification</a>
-                                            </li>
                                         </ul>
                                     </div>
                                     <hr>
