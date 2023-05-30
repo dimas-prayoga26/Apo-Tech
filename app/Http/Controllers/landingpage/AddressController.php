@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\landingpage;
 
-use App\Http\Controllers\Controller;
+use App\Models\citys;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\districts;
 
 class AddressController extends Controller
 {
@@ -14,7 +16,14 @@ class AddressController extends Controller
 
     public function create()
     {
-        return view('landing-page.profile.address.create');
+        $citys = citys::where('name', 'KABUPATEN INDRAMAYU')->pluck('name', 'id');
+        $districts = districts::orderBy('name', 'asc')->where('city_code', '3212')->pluck('name', 'id');
+
+        // dd($citys);
+        return view('landing-page.profile.address.create', [
+            'citys' => $citys,
+            'districts' => $districts,
+        ]);
     }
     public function edit($id)
     {

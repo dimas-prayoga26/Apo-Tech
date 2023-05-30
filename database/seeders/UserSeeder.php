@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Admin;
@@ -50,6 +51,31 @@ class UserSeeder extends Seeder
             }
 
             $status = StatusUser::where('name', 'verified')->first();
+
+            $address1 = Address::create([
+                'kabupaten'      => 'KABUPATEN INDRAMAYU',
+                    'kecamatan'      => 'KROYA',
+                    'desa'           => 'SUMBON',
+                    'full_address'   => 'BLOK SUMBON 1',
+            ]);
+            $address2 = Address::create([
+                'kabupaten'      => 'KABUPATEN INDRAMAYU',
+                    'kecamatan'      => 'GABUS WETAN',
+                    'desa'           => 'KEDOKAN GABUS',
+                    'full_address'   => 'KARANG SENGON',
+            ]);
+            $address3 = Address::create([
+                'kabupaten'      => 'KABUPTEN INDRAMAYU',
+                'kecamatan'      => 'TRISI',
+                'desa'           => 'CIKEDUNG',
+                'full_address'   => 'CIKEDUNG',
+            ]);
+            $address4 = Address::create([
+                'kabupaten'      => 'KABUPATEN INDRAMAYU',
+                    'kecamatan'      => 'LOSARANG',
+                    'desa'           => 'LOSARANG',
+                    'full_address'   => 'LOSARANG',
+            ]);
     
             $admin = User::create([
                 'username' => 'superAdmin',
@@ -66,7 +92,7 @@ class UserSeeder extends Seeder
                 'image'         => 'virtual/assets/img/faces/6.png',
                 'latitude'      => '-6.425721',
                 'longitude'     => '108.081242',
-                'address'       => 'Desa gabus wetan No.05',
+                'address_id'    => $address1->id,
                 'registered_at' => date('Y-m-d')
             ]);
 
@@ -85,7 +111,7 @@ class UserSeeder extends Seeder
                 'image'         => 'virtual/assets/img/faces/6.png',
                 'latitude'      => '-6.425721',
                 'longitude'     => '108.081242',
-                'address'       => 'Desa gabus wetan No.05',
+                'address_id'    => $address2->id,
                 'registered_at' => date('Y-m-d')
                 
             ]); 
@@ -105,9 +131,10 @@ class UserSeeder extends Seeder
                 'email' => 'buyer@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status->id,
-            ])->assignRole('buyer');
-    
-            $Users = [
+                ])->assignRole('buyer');
+                
+
+                $Users = [
                 [
                     'user_id'                   => $Users_Seller->id,
                     'first_name'                => 'Its',
@@ -116,7 +143,7 @@ class UserSeeder extends Seeder
                     'image'                     => 'images/dimasSeller.jpg',
                     'latitude'                  => '-6.425721',
                     'longitude'                 => '108.081242',
-                    'address'                   => 'Desa gabus wetan No.05',
+                    'address_id'    => $address3->id,
                     'registered_at'             => date('Y-m-d'),
                     'jenis_kelamin'             => 'Laki-Laki'
                 ],[
@@ -127,12 +154,11 @@ class UserSeeder extends Seeder
                     'image'                     => 'images/dimasSeller.jpg',
                     'latitude'                  => '-6.425721',
                     'longitude'                 => '108.081242',
-                    'address'                   => 'Desa gabus wetan No.05',
+                    'address_id'    => $address4->id,
                     'registered_at'             =>  date('Y-m-d'),
                     'jenis_kelamin'             => 'Perempuan'
                 ],
             ];
-            
 
             foreach ($Users as $data) {
                 $user = UserApotech::updateOrCreate($data);
