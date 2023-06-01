@@ -1,7 +1,7 @@
 @extends('landing-page.layouts.main')
 
 @section('title', 'Landing Page Apo Tech')
-<link rel="stylesheet" href="{{ asset('assets-ui/sukai_produk.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-ui/sukai_produk.css') }}">
 
 @section('content')
 
@@ -82,8 +82,7 @@
                                             </tr>
                                         </table>
                                         <div class="col-md align-right mt-3">
-                                            <input type="file" class="d-none" id="uploadImage">
-                                            <label for="uploadImage" class="btn btn-primary" style="display: flex; width:100px; justify-content:center">Edit</label>
+                                            <a href="" class="btn btn-primary" style="display: flex; width:100px; justify-content:center">Edit</a>
                                         </div>
                                     </div>
                                 </div>

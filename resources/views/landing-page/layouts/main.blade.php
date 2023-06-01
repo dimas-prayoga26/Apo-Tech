@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item mr-5 mt-1">
-            <a class="nav-link active" aria-current="page" href="#" style="margin-right: 100px; display:flex; align-items:center; font-size: 20px;"><i class="fas fa-home me-2" style="font-size: 20px;"></i>Beranda</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('home.index') }}" style="margin-right: 100px; display:flex; align-items:center; font-size: 20px;"><i class="fas fa-home me-2" style="font-size: 20px;"></i>Beranda</a>
           </li>
           <li class="nav-item mt-2">
             <form class="d-flex">
@@ -39,7 +39,7 @@
           </li>
           @auth
             <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 10px;">
                   {{-- <img src="{{ asset(auth()->user()->userApotech->image ?? 'virtual/assets/img/default-user.webp') }}"  width="35" height="35" class="rounded-circle" alt=""> --}}
                   <img src="{{  asset(Auth::user()->userApotech()->image ?? 'virtual/assets/img/default-user.webp')  }}"  width="40" height="40" class="rounded-circle" alt="">
                 </a>

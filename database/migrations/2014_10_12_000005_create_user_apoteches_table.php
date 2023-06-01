@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('phone_number')->nullable();
-            $table->foreignId('district_id')->nullable();
-            $table->string('address')->nullable();
+            // $table->foreignId('district_id')->nullable();
+            $table->foreignUuid('address_id')->constrained();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->string('image')->nullable();
