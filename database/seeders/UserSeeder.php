@@ -57,24 +57,32 @@ class UserSeeder extends Seeder
                     'kecamatan'      => 'KROYA',
                     'desa'           => 'SUMBON',
                     'full_address'   => 'BLOK SUMBON 1',
+                    'latitude'      => '-6.425721',
+                    'longitude'     => '108.081242',
             ]);
             $address2 = Address::create([
                 'kabupaten'      => 'KABUPATEN INDRAMAYU',
                     'kecamatan'      => 'GABUS WETAN',
                     'desa'           => 'KEDOKAN GABUS',
                     'full_address'   => 'KARANG SENGON',
+                    'latitude'      => '-6.425721',
+                    'longitude'     => '108.081242',
             ]);
             $address3 = Address::create([
                 'kabupaten'      => 'KABUPTEN INDRAMAYU',
                 'kecamatan'      => 'TRISI',
                 'desa'           => 'CIKEDUNG',
                 'full_address'   => 'CIKEDUNG',
+                'latitude'      => '-6.425721',
+                'longitude'     => '108.081242',
             ]);
             $address4 = Address::create([
                 'kabupaten'      => 'KABUPATEN INDRAMAYU',
                     'kecamatan'      => 'LOSARANG',
                     'desa'           => 'LOSARANG',
                     'full_address'   => 'LOSARANG',
+                    'latitude'      => '-6.425721',
+                    'longitude'     => '108.081242',
             ]);
     
             $admin = User::create([
@@ -90,8 +98,6 @@ class UserSeeder extends Seeder
                 'last_name'     => 'Admin',
                 'phone_number'  => '12345',
                 'image'         => 'virtual/assets/img/faces/6.png',
-                'latitude'      => '-6.425721',
-                'longitude'     => '108.081242',
                 'address_id'    => $address1->id,
                 'registered_at' => date('Y-m-d')
             ]);
@@ -109,8 +115,6 @@ class UserSeeder extends Seeder
                 'last_name'     => 'Expedition',
                 'phone_number'  => '12345',
                 'image'         => 'virtual/assets/img/faces/6.png',
-                'latitude'      => '-6.425721',
-                'longitude'     => '108.081242',
                 'address_id'    => $address2->id,
                 'registered_at' => date('Y-m-d')
                 
@@ -141,8 +145,8 @@ class UserSeeder extends Seeder
                     'last_name'                 => 'Seller',
                     'phone_number'              => '12345',
                     'image'                     => 'images/dimasSeller.jpg',
-                    'latitude'                  => '-6.425721',
-                    'longitude'                 => '108.081242',
+                    // 'latitude'                  => '-6.425721',
+                    // 'longitude'                 => '108.081242',
                     'address_id'    => $address3->id,
                     'registered_at'             => date('Y-m-d'),
                     'jenis_kelamin'             => 'Laki-Laki'
@@ -152,8 +156,8 @@ class UserSeeder extends Seeder
                     'last_name'                 => 'Buyer',
                     'phone_number'              => '67890',
                     'image'                     => 'images/dimasSeller.jpg',
-                    'latitude'                  => '-6.425721',
-                    'longitude'                 => '108.081242',
+                    // 'latitude'                  => '-6.425721',
+                    // 'longitude'                 => '108.081242',
                     'address_id'    => $address4->id,
                     'registered_at'             =>  date('Y-m-d'),
                     'jenis_kelamin'             => 'Perempuan'
