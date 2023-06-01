@@ -62,7 +62,7 @@
                                             <div class='form-group mb-3'>
                                                 <label for="name" class="col-md-4 col-form-label">kabupaten</label>
                                                 <div class="col-md-6">
-                                                    <select name="province" id="province" class="form-control">
+                                                    <select name="cities" id="cities" class="form-control">
                                                         @foreach ($citys as $id => $name)
                                                             <option value="{{ $id }}" {{ $name === 'KABUPATEN INDRAMAYU' ? 'selected readonly' : '' }} readonly>{{ $name }}</option>
                                                         @endforeach
@@ -77,7 +77,8 @@
                                             <div class='form-group mb-3'>
                                                 <label for="name" class="col-md-4 col-form-label">Kecamatan</label>
                                                 <div class="col-md-6">
-                                                    <select name="province" id="province" class="form-control">
+                                                    <select name="district" id="district" class="form-control">
+                                                        <option value="">== Select kecamatan ==</option>
                                                         @foreach ($districts as $id => $name)
                                                             <option value="{{ $id }}">{{ $name }}</option>
                                                         @endforeach
@@ -90,13 +91,11 @@
                                                 @enderror
                                             </div>
                                             <div class='form-group mb-3'>
-                                                <label for="name" class="col-md-4 col-form-label">kabupaten</label>
+                                                <label for="name" class="col-md-4 col-form-label">Desa</label>
                                                 <div class="col-md-6">
-                                                    <select name="province" id="province" class="form-control">
-                                                        @foreach ($citys as $id => $name)
-                                                            <option value="{{ $id }}" {{ $name === 'KABUPATEN INDRAMAYU' ? 'selected readonly' : '' }} readonly>{{ $name }}</option>
-                                                        @endforeach
-                                                    </select>                                                    
+                                                    <select name="village" id="village" class="form-control" disabled>
+                                                        <option value="">== Select desa ==</option>
+                                                    </select>                                                
                                                 </div>
                                                 @error('kabupaten')
                                                     <div class='invalid-feedback'>
@@ -142,6 +141,31 @@
 
     
     <script>
+        $(document).ready(function() {
+        $('#district').on('change', function() {
+            var districtId = $(this).val();
+            if (districtId) {
+                $.ajax({
+                    url: '/district/' + districtId + '/villages',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#village').empty();
+                        $('#village').append('<option value="">== Select desa ==</option>');
+                        $.each(data, function(key, value) {
+                            $('#village').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                        $('#village').prop('disabled', false);
+                    }
+                });
+            } else {
+                $('#village').empty();
+                $('#village').prop('disabled', true);
+            }
+        });
+    });
+
+        
         let map;
 
         function myMap() {

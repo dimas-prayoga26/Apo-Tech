@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->string('desa');
             $table->string('full_address');
+            $table->double('latitude')->nullable();
+            $table->double('longitude')->nullable();
             $table->timestamps();
         });
     }

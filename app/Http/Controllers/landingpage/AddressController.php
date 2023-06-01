@@ -6,6 +6,7 @@ use App\Models\citys;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\districts;
+use App\Models\villages;
 
 class AddressController extends Controller
 {
@@ -29,4 +30,11 @@ class AddressController extends Controller
     {
         return view('landing-page.profile.address.edit');
     }
+
+    public function getVillages($id)
+    {
+        $villages = villages::where('district_id', $id)->pluck('name', 'id');
+        return response()->json($villages);
+    }
+
 }

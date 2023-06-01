@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             // $table->foreignId('district_id')->nullable();
             $table->foreignUuid('address_id')->constrained();
-            $table->double('latitude')->nullable();
-            $table->double('longitude')->nullable();
+            // $table->double('latitude')->nullable();
+            // $table->double('longitude')->nullable();
             $table->string('image')->nullable();
             $table->string('licenses')->nullable();
             $table->string('registered_at');
