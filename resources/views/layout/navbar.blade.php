@@ -189,7 +189,7 @@
                             </div>
                         </div>
                         <div class="dropdown nav-item main-header-notification">
-                            <a class="new nav-link"   href="javascript:void(0);"><i class="fe fe-bell"></i><span class=" pulse"></span></a>
+                            <a class="new nav-link" href="javascript:void(0);"><i class="fe fe-bell"></i><span class=" pulse"></span></a>
                             <div class="dropdown-menu">
                                 <div class="menu-header-content bg-primary-gradient text-start d-flex">
                                     <div class="">

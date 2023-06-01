@@ -58,7 +58,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('auth.login') }}">
                     <button class="btn btn-outline-info btn-outline-dark" style="display: flex; margin-bottom:7px">
-                        <i class="fas fa-user me-2"></i>Login
+                        <i class="fas fa-user me-2" style="display:flex; align-item:center; font-size:20px"></i>Login
                     </button>
                 </a>
             </li>
