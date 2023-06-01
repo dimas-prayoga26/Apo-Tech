@@ -286,6 +286,10 @@ hr {
   color: #3b5998;
 }
 
+.item-mobile:hover {
+  transform: scale(1.1); /* menambahkan efek scaling saat hover */
+  transition: all 0.2s ease-in-out; /* menambahkan efek transisi selama 0.2 detik */
+}
 
 /* .container-item .item-image-wrapper-m {
   background-color: #a71313;

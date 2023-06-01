@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <div class="col-md-3"> 
-                <h5 class="text-center" style="margin-top: 25px;">Social Media</h5>
+                <h5 class="text-center">Social Media</h5>
                 <ul class="list-unstyled">
                     <div class="social-media-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>

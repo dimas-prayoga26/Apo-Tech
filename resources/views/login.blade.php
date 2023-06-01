@@ -83,7 +83,7 @@
                 <div class="col-sm-12 w-100">
                   <input style="background-color: #f3f3f3" name="password" type="password" class="form-control" id="inputPassword" placeholder="password here"required />
                 </div>
-                <div class="py-2">
+                <div class="py-2 col-sm-12 w-100">
                   <p> <a style="color: #00b9d8; font-weight: 500; text-decoration: none;" class="float-end" href="{{ route('forgot-password') }}">Forgot Password?</a></p>
                 </div>
               </div>

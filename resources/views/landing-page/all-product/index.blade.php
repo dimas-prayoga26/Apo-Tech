@@ -1,5 +1,6 @@
 @extends('landing-page.layouts.main')
     <link rel="stylesheet" href="{{ asset('assets-ui/liat_all_produk.css') }}">
+    
 @section('title', 'Lihat Product Apo Tech')
 
 @section('content')
@@ -207,7 +208,7 @@
                                 </picture>
                             </figure>
                         </div>
-                        <div class="item-meta-container-m">
+                        <div class="item-meta-container-m ">
                             <div class="item-name-m" style="background-color: #D9D9D9;">
                                 <span style="display: inline-block;">Biovision 30’s</span>
                             </div>
