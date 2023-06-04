@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Traits\Uuid;
-use App\Models\Address;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class UserApotech extends Model
+class Cart extends Model
 {
     use HasFactory, Uuid;
 
@@ -18,18 +19,19 @@ class UserApotech extends Model
 
     protected $guarded = [];
 
-    public function user_type()
-    {
-        return $this->belongsTo(UserType::class);
-    }
+    protected $appends = ['image_url'];
 
-    public function user()
-    {
+
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function address()
+    public function product(){
+        return $this->hasOne(Product::class, 'id','product_id');
+    }
+
+    protected function getImageUrlAttribute($value)
     {
-        return $this->hasOne(Address::class);
+        return url($this->display_image);
     }
 }

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('orders_details_id')->constrained();
-            $table->foreignUuid('shipment_details_id')->constrained();
-            $table->string('status');
-            $table->integer('total_price');
+            $table->foreignUuid('user_id');
+            $table->foreignUuid('product_id');
+            $table->integer('total_price')->unsigned();
+            $table->string('status')->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

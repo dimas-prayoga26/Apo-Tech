@@ -24,7 +24,9 @@ class AuthController extends Controller
                 Auth::user()->update(['fcm_token' => $request->fcm_token]);
             }
             $token = Auth::user()->createToken('authToken')->plainTextToken;
-            $user = array_merge(Auth::user()->toArray(), ['token' => $token]);
+            $id = Auth::user()->id;
+            $user = User::with(['user_detail', 'user_detail.address'])->find($id);
+            $user = array_merge($user->toArray(), ['token' => $token]);
             return $this->okResponse('Login berhasil!', $user);
         }
         

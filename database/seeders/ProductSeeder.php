@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Throwable;
+use App\Models\Cart;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
@@ -32,6 +33,7 @@ class ProductSeeder extends Seeder
             ]);
 
             $user = User::role('admin')->first();
+            $buyer = User::role('buyer')->first();
 
             $product = Product::create([
                 'category_id' => $category->id,
@@ -84,6 +86,30 @@ class ProductSeeder extends Seeder
                 ]);
             }
 
+            Cart::create([
+                'user_id' => $buyer->id,
+                'product_id' => $product->id,
+                'product_name' => $product->name,
+                'product_price' => $product->price,
+                'display_image' => $img[0],
+                'qty' => 2
+            ]);
+            Cart::create([
+                'user_id' => $buyer->id,
+                'product_id' => $product1->id,
+                'product_name' => $product1->name,
+                'product_price' => $product1->price,
+                'display_image' => $img2[0],
+                'qty' => 2
+            ]);
+            Cart::create([
+                'user_id' => $buyer->id,
+                'product_id' => $product2->id,
+                'product_name' => $product2->name,
+                'product_price' => $product2->price,
+                'display_image' => $img[0],
+                'qty' => 2
+            ]);
 
             DB::commit();
         } catch (Throwable $th) {

@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
-use App\Models\Address;
+use App\Models\UserApotech;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class UserApotech extends Model
+class Address extends Model
 {
     use HasFactory, Uuid;
 
@@ -18,18 +18,8 @@ class UserApotech extends Model
 
     protected $guarded = [];
 
-    public function user_type()
+    public function user_apotech()
     {
-        return $this->belongsTo(UserType::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function address()
-    {
-        return $this->hasOne(Address::class);
+        return $this->belongsTO(UserApotech::class);
     }
 }
