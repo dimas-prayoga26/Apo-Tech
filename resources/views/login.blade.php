@@ -41,10 +41,10 @@
           </div>
           <div class="col d-flex flex-column align-items-center justify-content-center">
             <img style="width: 500px" src="{{ asset('assets-image/login.png') }}" alt="login" />
-            <p style="width: 450px" class="fs-1 text-start pt-4">
+            <h1 style="width: 450px; color: #ACA8A8;" class="fs-1 text-start pt-4">
               Hi there <br />
               welcome back
-            </p>
+            </h1>
           </div>
         </div>
       </div>

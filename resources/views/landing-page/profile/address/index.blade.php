@@ -18,12 +18,12 @@
                                 <div class="row mt-3">
                                     <div class="col-12">
                                         <ul class="nav justify-content-start">
-                                            <li class="nav-item mx-4">
-                                                <a class="nav-link text-dark" aria-current="page"
+                                            <li class="nav-item mx-2">
+                                                <a style="border-radius: 50px; display:flex; width: 100px; justify-content:center" class="btn btn-sm mb-2 btn btn-outline-secondary text-secondary" aria-current="page"
                                                     href="{{ route('profile.index') }}">Profile</a>
                                             </li>
-                                            <li class="nav-item mx-4">
-                                                <a class="nav-link text-dark"
+                                            <li class="nav-item mx-2">
+                                                <a style="border-radius: 50px; display:flex; width: 100px; justify-content:center" class="btn btn-sm mb-2 btn btn-outline-primary text-primary ms-0" 
                                                     href="{{ route('address.index') }}">Address</a>
                                             </li>
                                         </ul>
