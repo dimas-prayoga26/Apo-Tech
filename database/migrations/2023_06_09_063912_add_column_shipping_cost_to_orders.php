@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders_details', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('product_id')->constrained();
-            $table->integer('qty');
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer('shipping_cost')->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_details');
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
 };

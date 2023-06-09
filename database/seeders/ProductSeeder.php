@@ -21,15 +21,15 @@ class ProductSeeder extends Seeder
     {
         try {
             DB::beginTransaction();
-            $img = ['assets-image/p1.jpeg', 'assets-image/p2.jpeg', 'assets-image/p3.jpeg', 'assets-image/p4.jpeg', 'assets-image/p5.jpeg'];
-            $img2 = ['assets-image/p5.jpeg', 'assets-image/p4.jpeg', 'assets-image/p3.jpeg', 'assets-image/p2.jpeg', 'assets-image/p1.jpeg'];
+            $img = ['assets-image/p1.jpg', 'assets-image/p2.jpg', 'assets-image/p3.jpg', 'assets-image/p4.jpg', 'assets-image/p5.jpg'];
+            $img2 = ['assets-image/p5.jpg', 'assets-image/p4.jpg', 'assets-image/p3.jpg', 'assets-image/p2.jpg', 'assets-image/p1.jpg'];
             $category = Category::create([
                 'name' => 'Suplement',
-                'image' => 'assets-image/p5.jpeg'
+                'image' => 'assets-image/p6.png'
             ]);
             $category1 = Category::create([
                 'name' => 'Vitamin',
-                'image' => 'assets-image/p1.jpeg'
+                'image' => 'assets-image/p7.jpg'
             ]);
 
             $user = User::role('admin')->first();
