@@ -27,7 +27,8 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'qty' => 'numeric'
+            'qty' => 'numeric',
+            'product_price' => 'numeric'
         ]);
 
         try {
@@ -35,7 +36,10 @@ class CartController extends Controller
             Cart::create([
                 'user_id' => $request->user_id,
                 'product_id' => $request->product_id,
-                'qty' => $request->qty
+                'qty' => $request->qty,
+                'product_price' => $request->product_price,
+                'product_name' => $request->product_name,
+                'display_image' => $request->display_image,
             ]);
 
             return $this->okResponse('Berhasil Menambahkan Ke Keranjang');
@@ -50,7 +54,7 @@ class CartController extends Controller
      */
     public function inc($id)
     {
-        $cart = Cart::find($id);
+        $cart = Cart::where('id',$id)->orWhere('product_id',$id)->first();
         try {
             $cart->update([
                 'qty' => $cart->qty + 1

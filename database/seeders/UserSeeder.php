@@ -73,8 +73,8 @@ class UserSeeder extends Seeder
                 'kecamatan' => 'Widasari',
                 'desa' => 'Ujung Jaya',
                 'full_address' => 'Desa ujung jaya blok A no.87',
-                'latitude'      => '-6.425721',
-                'longitude'     => '108.081242',
+                'latitude'      => '-6.327583',
+                'longitude'     => '108.324936',
             ]);
 
             $courier = User::create([

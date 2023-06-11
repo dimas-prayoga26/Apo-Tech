@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id');
+            $table->foreignUuid('user_id')->constrained();
             $table->integer('total_price')->unsigned();
             $table->string('status')->nullable();
             $table->string('note')->nullable();

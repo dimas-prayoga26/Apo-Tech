@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
@@ -13,9 +14,14 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        try {
+            $orders = Order::where('user_id', $id)->with(['order_details', 'order_details.product', 'order_details.product.images' ,'order_details.product.user'])->get();
+            return $this->okResponse('success',$orders);
+        } catch (\Throwable $th) {
+            return $this->serverErrorResponse($th->getMessage());
+        }
     }
 
     /**
@@ -28,12 +34,15 @@ class OrderController extends Controller
         try {
 
             DB::beginTransaction(); 
-            
+
+                $user = User::with('user_detail')->where('id', $request->user_id)->first();
+
                 $order = Order::create([
                     'user_id' => $request->user_id,
                     'courier_id' => $request->courier_id,
                     'total_price' => $request->total_price,
                     'shipping_cost' => $request->shipping_cost,
+                    'status' => 'unpaid',
                     'note' => $request->note,
                 ]);
 
@@ -50,12 +59,18 @@ class OrderController extends Controller
                 'transaction_details' => array(
                     'order_id' => $order->id,
                     'gross_amount' => $order->total_price,
+                ),
+                'customer_details' =>  array(
+                    'first_name'       => $user->user_detail->first_name,
+                    'last_name'        => $user->user_detail->last_name,
+                    'email'            => $user->email,
+                    'phone'            => $user->user_detail->phone_number,
                 )
             );
             
             $snapToken = \Midtrans\Snap::getSnapToken($params);
             DB::commit();
-            return $this->okResponse('success', $snapToken);
+            return $this->okResponse('success', ['snap_token' => $snapToken, 'order_id' => $order->id]);
         } catch (\Throwable $th) {
             DB::rollback();
             return $this->serverErrorResponse($th->getMessage());
@@ -67,7 +82,17 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $response = HTTP::withHeaders();
+            DB::beginTransaction();
+            Order::find($id)->update([
+                'status' => $request->status,
+            ]);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $this->serverErrorResponse($th->getMessage());
+        }
     }
 
     /**
@@ -75,7 +100,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**

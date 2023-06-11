@@ -23,6 +23,12 @@ class CourierSeeder extends Seeder
                 'cost'  => 1000,
             ]);
 
+            Courier::create([
+                'name'  => 'Pandawa',
+                'phone_number'  => '08923616966',
+                'cost'  => 1500,
+            ]);
+
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
