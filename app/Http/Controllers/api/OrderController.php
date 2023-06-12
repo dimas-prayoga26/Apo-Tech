@@ -8,6 +8,7 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
@@ -35,7 +36,7 @@ class OrderController extends Controller
 
             DB::beginTransaction(); 
 
-                $user = User::with('user_detail')->where('id', $request->user_id)->first();
+                $user = User::with(['user_detail', 'user_detail.address'])->where('id', $request->user_id)->first();
 
                 $order = Order::create([
                     'user_id' => $request->user_id,
@@ -44,6 +45,7 @@ class OrderController extends Controller
                     'shipping_cost' => $request->shipping_cost,
                     'status' => 'unpaid',
                     'note' => $request->note,
+                    'is_from_cart' => $request->is_from_cart,
                 ]);
 
                 foreach($request->list_product as $item){
@@ -65,15 +67,25 @@ class OrderController extends Controller
                     'last_name'        => $user->user_detail->last_name,
                     'email'            => $user->email,
                     'phone'            => $user->user_detail->phone_number,
-                )
+                ),
+                'shipping_address' => array(
+                    'first_name'   => $user->user_detail->first_name,
+                    'last_name'    => $user->user_detail->last_name,
+                    'address'      => $user->user_detail->address->full_address,
+                    'city'         => "Indramayu",
+                    'phone'        => $user->user_detail->phone_number,
+                    'country_code' => 'IDN'
+                ),
             );
             
             $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+            Order::find($order->id)->update(['snap_token' => $snapToken]);
             DB::commit();
             return $this->okResponse('success', ['snap_token' => $snapToken, 'order_id' => $order->id]);
         } catch (\Throwable $th) {
             DB::rollback();
-            return $this->serverErrorResponse($th->getMessage());
+            return $this->serverErrorResponse($th);
         }
     }
 
@@ -83,10 +95,17 @@ class OrderController extends Controller
     public function show(string $id)
     {
         try {
-            $response = HTTP::withHeaders();
+            $response = Http::withHeaders([
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Basic ' . base64_encode(env('MIDTRANS_SERVER_KEY') . ':')
+            ])->get('https://api.sandbox.midtrans.com/v2/'.$id.'/status');
+
+            $responseJson = $response->json();
+
             DB::beginTransaction();
             Order::find($id)->update([
-                'status' => $request->status,
+                'status' => $responseJson['transaction_status'],
             ]);
             DB::commit();
         } catch (\Throwable $th) {
