@@ -41,55 +41,62 @@ class UserSeeder extends Seeder
                     // 'guard_name' => 'web'
                 ]);
             }
-    
-            $status = ['unverified', 'verified'];
-    
+
+            $status = ['unverified', 'verified','verification process'];
+
             foreach ($status as $data) {
                 StatusUser::updateOrCreate([
                     'name'  => $data
                 ]);
             }
 
-            $status = StatusUser::where('name', 'verified')->first();
+            $status1 = StatusUser::where('name', 'verified')->first();
+            $status2 = StatusUser::where('name', 'unverified')->first();
 
-            $address1 = Address::create([
-                'kabupaten'      => 'KABUPATEN INDRAMAYU',
-                    'kecamatan'      => 'KROYA',
-                    'desa'           => 'SUMBON',
-                    'full_address'   => 'BLOK SUMBON 1',
-                    'latitude'      => '-6.425721',
-                    'longitude'     => '108.081242',
-            ]);
-            $address2 = Address::create([
-                'kabupaten'      => 'KABUPATEN INDRAMAYU',
-                    'kecamatan'      => 'GABUS WETAN',
-                    'desa'           => 'KEDOKAN GABUS',
-                    'full_address'   => 'KARANG SENGON',
-                    'latitude'      => '-6.425721',
-                    'longitude'     => '108.081242',
-            ]);
-            $address3 = Address::create([
-                'kabupaten'      => 'KABUPTEN INDRAMAYU',
-                'kecamatan'      => 'TRISI',
-                'desa'           => 'CIKEDUNG',
-                'full_address'   => 'CIKEDUNG',
-                'latitude'      => '-6.425721',
-                'longitude'     => '108.081242',
-            ]);
-            $address4 = Address::create([
-                'kabupaten'      => 'KABUPATEN INDRAMAYU',
-                    'kecamatan'      => 'LOSARANG',
-                    'desa'           => 'LOSARANG',
-                    'full_address'   => 'LOSARANG',
-                    'latitude'      => '-6.425721',
-                    'longitude'     => '108.081242',
-            ]);
-    
+
+
+            // $address1 = Address::create([
+            //     'kabupaten'      => 'KABUPATEN INDRAMAYU',
+            //     'kecamatan'      => 'KROYA',
+            //     'desa'           => 'SUMBON',
+            //     'full_address'   => 'BLOK SUMBON 1',
+            //     'latitude'      => '-6.425721',
+            //     'longitude'     => '108.081242',
+            //     'user_apotech_id' => $user_apotech->id
+            // ]);
+            // $address2 = Address::create([
+            //     'kabupaten'      => 'KABUPATEN INDRAMAYU',
+            //     'kecamatan'      => 'GABUS WETAN',
+            //     'desa'           => 'KEDOKAN GABUS',
+            //     'full_address'   => 'KARANG SENGON',
+            //     'latitude'      => '-6.425721',
+            //     'longitude'     => '108.081242',
+            //     'user_apotech_id' => $user_apotech->id
+            // ]);
+            // $address3 = Address::create([
+            //     'kabupaten'      => 'KABUPTEN INDRAMAYU',
+            //     'kecamatan'      => 'TRISI',
+            //     'desa'           => 'CIKEDUNG',
+            //     'full_address'   => 'CIKEDUNG',
+            //     'latitude'      => '-6.425721',
+            //     'longitude'     => '108.081242',
+            //     'user_apotech_id' => $user_apotech->id
+            // ]);
+            // $address4 = Address::create([
+            //     'kabupaten'      => 'KABUPATEN INDRAMAYU',
+            //     'kecamatan'      => 'LOSARANG',
+            //     'desa'           => 'LOSARANG',
+            //     'full_address'   => 'LOSARANG',
+            //     'latitude'      => '-6.425721',
+            //     'longitude'     => '108.081242',
+            //     'user_apotech_id' => $user_apotech->id
+            // ]);
+
             $admin = User::create([
                 'username' => 'superAdmin',
                 'email' => 'superadmin@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'status_user_id' => $status->id,
+                'status_user_id' => $status1->id,
             ])->assignRole(['admin']);
 
             UserApotech::create([
@@ -98,15 +105,17 @@ class UserSeeder extends Seeder
                 'last_name'     => 'Admin',
                 'phone_number'  => '12345',
                 'image'         => 'virtual/assets/img/faces/6.png',
-                'address_id'    => $address1->id,
+                // 'address_id'    => $address1->id,
                 'registered_at' => date('Y-m-d')
             ]);
+
+
 
             $courier = User::create([
                 'username' => 'Courier123',
                 'email' => 'courier@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'status_user_id' => $status->id,
+                'status_user_id' => $status2->id,
             ])->assignRole(['courier']);
 
             UserApotech::create([
@@ -115,10 +124,9 @@ class UserSeeder extends Seeder
                 'last_name'     => 'Expedition',
                 'phone_number'  => '12345',
                 'image'         => 'virtual/assets/img/faces/6.png',
-                'address_id'    => $address2->id,
                 'registered_at' => date('Y-m-d')
-                
-            ]); 
+
+            ]);
 
 
             // =========================USER SELLER DAN USER BUYER======================================
@@ -127,38 +135,32 @@ class UserSeeder extends Seeder
                 'username' => 'seller',
                 'email' => 'seller@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'status_user_id' => $status->id,
+                'status_user_id' => $status1->id,
             ])->assignRole('seller');
 
             $Users_Buyer = User::create([
                 'username' => 'buyer',
                 'email' => 'buyer@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'status_user_id' => $status->id,
-                ])->assignRole('buyer');
-                
+                'status_user_id' => $status2->id,
+            ])->assignRole('buyer');
 
-                $Users = [
+
+            $Users = [
                 [
                     'user_id'                   => $Users_Seller->id,
                     'first_name'                => 'Its',
                     'last_name'                 => 'Seller',
                     'phone_number'              => '12345',
-                    'image'                     => 'images/dimasSeller.jpg',
-                    // 'latitude'                  => '-6.425721',
-                    // 'longitude'                 => '108.081242',
-                    'address_id'    => $address3->id,
+                    'image'                     => NULL,
                     'registered_at'             => date('Y-m-d'),
                     'jenis_kelamin'             => 'Laki-Laki'
-                ],[
+                ], [
                     'user_id'                   => $Users_Buyer->id,
                     'first_name'                => 'Its',
                     'last_name'                 => 'Buyer',
                     'phone_number'              => '67890',
-                    'image'                     => 'images/dimasSeller.jpg',
-                    // 'latitude'                  => '-6.425721',
-                    // 'longitude'                 => '108.081242',
-                    'address_id'    => $address4->id,
+                    'image'                     => NULL,
                     'registered_at'             =>  date('Y-m-d'),
                     'jenis_kelamin'             => 'Perempuan'
                 ],
@@ -166,18 +168,16 @@ class UserSeeder extends Seeder
 
             foreach ($Users as $data) {
                 $user = UserApotech::updateOrCreate($data);
-            } 
+            }
 
             // $user[0]->assignRole('seller');
             // $user[1]->assignRole('buyer');
-            
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            
+
             echo $e->getMessage();
         }
-        
-        
     }
 }

@@ -3,23 +3,21 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class ShipmentDetail extends Model
 {
     use HasFactory, Uuid;
 
-    // public $table = "addresses";
-
     public $incrementing = false;
 
+    // In Laravel 6.0+ make sure to also set $keyType
     protected $keyType = 'string';
 
     protected $guarded = [];
 
-    public function userApotech()
-    {
-        return $this->belongsTo(UserApotech::class);
+    public function shipment(){
+        return $this->belongsTo(Shipment::class);
     }
 }

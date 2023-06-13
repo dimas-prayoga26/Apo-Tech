@@ -17,6 +17,7 @@
                             <div class="col-lg-9 col-md-8 m-t-10">
                                 <div class="row mt-3">
                                     <div class="col-12">
+<<<<<<< HEAD
                                         <ul class="nav justify-content-start">
                                             <li class="nav-item mx-2">
                                                 <a style="border-radius: 50px; display:flex; width: 100px; justify-content:center" class="btn btn-sm mb-2 btn btn-outline-secondary text-secondary" aria-current="page"
@@ -27,12 +28,16 @@
                                                     href="{{ route('address.index') }}">Address</a>
                                             </li>
                                         </ul>
+=======
+                                        <x-Landingpage.NavbarProfile />
+>>>>>>> 18ec0daca92ce05b9ec2d8e296a29c18fa129245
                                     </div>
                                     <hr>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href="{{ route('address.create') }}" class="btn mt-2 mb-3 background-tosca"><i class="fas fa-plus"></i>
+                                        <a href="{{ route('address.create') }}" class="btn mt-2 mb-3 background-tosca"><i
+                                                class="fas fa-plus"></i>
                                             Tambah
                                             Alamat</a>
                                         <table class="table table-borderless">
@@ -46,39 +51,45 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <input type="radio" id="age1" name="age" value="30">
-                                                    </td>
-                                                    <td class="text-left">
-                                                        {{-- <span class="background-tosca text-primary btn mb-2">Utama</span> --}}
-                                                        {{-- <br> --}}
-                                                        <span class="text-center">Nurul
+                                                @foreach ($items as $item)
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <input type="radio" id="age1" name="age"
+                                                                value="30" @checked($item->is_default == 1)>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            {{-- <span class="background-tosca text-primary btn mb-2">Utama</span> --}}
+                                                            {{-- <br> --}}
+                                                            <span class="text-center">{{ $item->userApotech->first_name }}
+                                                                {{ $item->userApotech->last_name }}</span>
                                                             <br>
-                                                            0895333448202
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        Rumah
-                                                        Legok blok kolot, LOHEBNER
-                                                        KABUPATEN INDRAMAYU,
-                                                        JAWA BARAT
-                                                    </td>
-                                                    <td>
-                                                        JAWA BARAT, KABUPATEN
-                                                        INDRAMAYU, LOHBENER
-                                                    </td>
-                                                    <td class="d-flex justify-content-between">
-                                                        <div class="">
-                                                            <a href="{{ route('address.edit',1) }}" class="btn btn-sm mb-2 btn-primary">
-                                                                <i class="fas fa-edit"></i> Ubah
-                                                            </a>
-                                                            <a href="{{ route('address.edit',1) }}" class="btn btn-sm mb-2 btn-danger">
-                                                                <i class="fas fa-trash"></i> Hapus
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                            {{ $item->no_handphone }}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->full_address }}
+                                                        </td>
+                                                        <td>
+                                                            JAWA BARAT, KABUPATEN
+                                                            INDRAMAYU, {{ $item->kecamatan }}
+                                                        </td>
+                                                        <td class="d-flex justify-content-between">
+                                                            <div class="">
+                                                                <a href="{{ route('address.edit', $item->id) }}"
+                                                                    class="btn btn-sm mb-2 btn-primary">
+                                                                    <i class="fas fa-edit"></i> Ubah
+                                                                </a>
+                                                                <form action="{{ route('address.destroy', $item->id) }}"
+                                                                    class="d-inline" method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <button class="btn btn-sm mb-2 btn-danger">
+                                                                        <i class="fas fa-trash"></i> Hapus </button>
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

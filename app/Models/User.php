@@ -33,7 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function status_user()
     {
-        return $this->belongsTo(StatusUser::class);
+        return $this->belongsTo(StatusUser::class, 'status_user_id');
     }
 
     public function userApotech()

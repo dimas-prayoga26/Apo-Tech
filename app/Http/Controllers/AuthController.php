@@ -98,7 +98,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         } elseif ($user->hasRole('seller')) {
             $user->syncRoles(['seller']);
-            return redirect()->route('dashboard');
+            return redirect()->route('home.index');
         } elseif ($user->hasRole('buyer')) {
             $user->syncRoles(['buyer']);
             return redirect()->route('home.index');
