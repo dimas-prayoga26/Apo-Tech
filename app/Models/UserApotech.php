@@ -18,6 +18,8 @@ class UserApotech extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['image_url'];
+
     public function user_type()
     {
         return $this->belongsTo(UserType::class);
@@ -31,5 +33,10 @@ class UserApotech extends Model
     public function address()
     {
         return $this->hasOne(Address::class);
+    }
+
+    protected function getImageUrlAttribute($value)
+    {
+        return url($this->image);
     }
 }

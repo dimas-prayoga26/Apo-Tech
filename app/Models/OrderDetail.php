@@ -19,6 +19,8 @@ class OrderDetail extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['display_image' ,'display_name', 'price'];
+
     protected $table = 'orders_details';
 
     public function order() {
@@ -27,6 +29,21 @@ class OrderDetail extends Model
 
     public function product(){
         return $this->hasOne(Product::class, 'id', 'product_id');
+    }
+
+    protected function getDisplayImageAttribute($value)
+    {
+        return $this->product->display_image;
+    }
+
+    protected function getDisplayNameAttribute($value)
+    {
+        return $this->product->name;
+    }
+
+    protected function getPriceAttribute($value)
+    {
+        return $this->product->price;
     }
 
 }

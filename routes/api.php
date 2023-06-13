@@ -35,5 +35,6 @@ Route::get('/cart/{id?}', [CartController::class, 'index']);
 Route::apiResource('/cart', CartController::class);
 Route::get('/order/{id?}', [OrderController::class, 'index']);
 Route::get('/order/status/{id?}', [OrderController::class, 'show']);
+Route::get('/order/orders/{id?}', [OrderController::class, 'getById']);
 Route::apiResource('/order', OrderController::class);
 Route::apiResource('/couriers', CourierController::class);

@@ -19,6 +19,8 @@ class Product extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['display_image'];
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
@@ -29,5 +31,10 @@ class Product extends Model
 
     public function images(){
         return $this->hasMany(ProductImage::class);
+    }
+
+    protected function getDisplayImageAttribute($value)
+    {
+        return url($this->images[0]->image_url);
     }
 }

@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function index($id)
     {
         try {
-            $orders = Order::where('user_id', $id)->with(['order_details', 'order_details.product', 'order_details.product.images' ,'order_details.product.user'])->get();
+            $orders = Order::where('user_id', $id)->with(['order_details', 'order_details.product' ,'order_details.product.user'])->get();
             return $this->okResponse('success',$orders);
         } catch (\Throwable $th) {
             return $this->serverErrorResponse($th->getMessage());
@@ -114,6 +114,8 @@ class OrderController extends Controller
         }
     }
 
+
+
     /**
      * Update the specified resource in storage.
      */
@@ -128,5 +130,14 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getByID($id){
+        try {
+            $orders = Order::where('id',$id)->with('order_details')->first();
+            return $this->okResponse('success', $orders);
+        } catch (\Throwable $th) {
+            return $this->serverErrorResponse();
+        }
     }
 }
