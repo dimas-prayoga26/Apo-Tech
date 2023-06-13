@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\landingpage\AddressController;
 use App\Http\Controllers\landingpage\ProfileController;
+use App\Http\Controllers\RequestVerificationController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -80,12 +81,30 @@ Route::group(['middleware' => ['role:admin|seller|courier']], function () {
     Route::resource('product', ProductController::class);
     Route::post('product/prescription', [ProductController::class, 'prescription'])->name('product.is-prescription');
     Route::post('product/deleteImgDropify', [ProductController::class, 'deleted_dropify'])->name('product.deleted_dropify');
+
+    // request verification
+    Route::get('shipments/datatable', [RequestVerificationController::class, 'datatable'])->name('shipment.datatable');
+    Route::resource('shipment', RequestVerificationController::class);
+
+    // request-verification
+    Route::get('request-verification/datatable', [RequestVerificationController::class, 'datatable'])->name('request-verification.datatable');
+    Route::resource('request-verification', RequestVerificationController::class);
+
+    Route::post('request-verification', [RequestVerificationController::class,'set_verification'])->name('request-verification.set-verification');
     
 });
 
-Route::group(['middleware' => ['role:buyer']] ,function(){
+Route::group(['middleware' => ['role:buyer|seller']] ,function(){
     Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
+    Route::get('profile/edit',[ProfileController::class,'edit'])->name('profile.edit');
+    Route::post('profile/edit',[ProfileController::class,'update'])->name('profile.update');
     Route::resource('address',AddressController::class);
+
+    // upload license
+    Route::post('/upload-license',[ProfileController::class,'upload_license'])->name('upload-license');
+
+    // change image progile
+    Route::post('/change-image-profile',[ProfileController::class,'change_image_profile'])->name('change-image-profile');
 
     Route::get('pesanan/detail', function(){
         return view('landing-page.profile.product-order-information.show');
