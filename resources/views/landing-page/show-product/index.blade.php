@@ -2,15 +2,21 @@
 
 @section('title', 'Landing Page Apo Tech')
 <link rel="stylesheet" href="{{ asset('assets-ui/liat_produk.css') }}">
+<style>
+    *{
+        padding:0;
+        margin: 0;
+    }
+</style>
 
 @section('content')
 <div class="row">
     <div class="col-md-6" style="padding-left: 200px;">
       <img class="product-image" src="{{ asset('assets-image/images-landing/icon_footer_main.png') }}" alt="Gambar Produk">
       <div class="sub-images" style="margin-left: 10px;">
-        <img src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 1">
-        <img src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 2">
-        <img src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 3">
+        <img class="Sub-Produk" src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 1">
+        <img class="Sub-Produk" src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 2">
+        <img class="Sub-Produk" src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 3">
       </div>
     </div>
     <div class="col-md-6" style="margin-top: 10px;">
@@ -36,13 +42,30 @@
             <label class="d-flex justify-content-start" for="qty" style="font-size: 18px;">Jumlah :</label>
             <div class="input-group mt-2">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus"><i class="fas fa-minus"></i></button>
+                <button onclick="onMin()" type="button" class="btn btn-default btn-number" data-type="minus"><i class="fas fa-minus"></i></button>
               </span>
               <input type="number" id="qty" name="qty" min="1" value="1" class="form-control input-number">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-number" data-type="plus"><i class="fas fa-plus"></i></button>
+                <button onclick="onPlus()" type="button" class="btn btn-default btn-number" data-type="plus"><i  class="fas fa-plus"></i></button>
               </span>
             </div>
+            <script>
+                const valueAyam = document.getElementById("qty");
+                const onPlus = () => {
+                  valueAyam.value = parseInt(valueAyam.value) + 1;
+              
+                  // alert('debug geprek')
+                }
+                const onMin = () => {
+                  
+                  if(valueAyam.value > 1){
+                    valueAyam.value = parseInt(valueAyam.value) - 1;
+                  }
+              
+                  // alert('debug geprek')
+                }
+              </script>
+              
           </div>
           <div class="d-flex justify-content-start mt-3">
             <button type="button" class="btn btn-primary" style="margin-right: 10px;"><i class="fas fa-shopping-cart"></i> Tambah ke Keranjang</button>
@@ -63,12 +86,14 @@
       </div>
     </div>
   </div>
+
+
   <div class="container-store" style="padding: 10px; background-color: #00B9D8;">
       <div class="row">
         <div class="col-md-4" style="display: flex; align-items: center;">
           <img src="{{ asset('assets-image/images-landing/icon_footer_main.png') }}" alt="Foto Toko" style="border-radius: 50%; width: 150px; height: 150px; margin-right: 10px;">
           <div>
-            <h5><i class="fa fa-shop"></i><span> Apotec Kelapa Gading</span></h5>
+            <h5><i class="fa fa-shop"></i><span> Apotek Kelapa Gading</span></h5>
             <span style="padding-left: 2px;"><i class="fa fa-location-dot" style="font-size: 16px;color: aquamarine;"></i> Indramayu</span>
               <div class="section-seller-overview__item section-seller-overview__item--clickable">
                   <div class="section-seller-overview__item-text-value">
@@ -102,7 +127,7 @@
           <div class="tab-pane active" id="info" role="tabpanel" aria-labelledby="info-tab">
               <strong>Golongan Obat</strong>
                 <div>
-                    Obat Keras<img src="keras.jpg" alt="" height="35" width="35">
+                    Obat Keras<img src={{ asset('assets-image/images-landing/keras.jpg') }} alt="" height="35" width="35">
                       <div class="alert alert-info alert-dismissable" style="background-color:#EF9486;color:#333;">
                             <strong>Informasi!</strong> Pembelian produk ini wajib mengunakan resep dokter
                       </div>
@@ -134,12 +159,12 @@
     </div>
   </div>
   <div class="container-item">
-    <div class="product-header" style="margin-left: 25px;margin-top: 25px;">
+    <div class="product-header" style="margin-left: 25px;margin-top: 25px; max-width: 1200px;">
       <h3 style="color: #fff;">Produk Relevan Dari Penjual Lain</h3>
     </div>
     <div class="category-item-container mt-5">  
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-6">
+        <div style="margin-left: 0%; height:400px; display:flex; max-width:100wh; overflow-x: scroll; white-space: nowrap;">
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
                 <div class="item-mobile">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
@@ -161,8 +186,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
+                <div  class="item-mobile ">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
@@ -183,8 +208,8 @@
                     </a>
                 </div>
             </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
+                <div class="item-mobile ">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
@@ -205,7 +230,95 @@
                     </a>
                 </div>
             </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="col-md-3 col-sm-6 col-xs-6 col-md-3 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>  
+            <div class="col-md-3 col-sm-6 col-xs-6 col-md-3 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>  
+            <div class="col-md-3 col-sm-6 col-xs-6 col-md-3 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>  
+            <div class="col-md-3 col-sm-6 col-xs-6 col-md-3 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>  
+            <div class="col-md-3 col-sm-6 col-xs-6 col-md-3 pt-1">
                 <div class="item-mobile">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
@@ -230,13 +343,15 @@
         </div>              
     </div>
   </div>
-  <div class="container-item">
+
+  {{-- end --}}
+  <div class="container-item" style="overflow-x: scroll; white-space: nowrap;">
     <div class="product-header" style="margin-left: 25px;margin-top: 25px;">
       <h3  style="color: #fff;">Produk Lainnya</h3>
     </div>
     <div class="category-item-container mt-5">  
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-6">
+        <div style="margin-left: 0%; height:350px; display:flex; max-width:100wh; overflow-x: scroll; white-space: nowrap;">
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
                 <div class="item-mobile">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
@@ -258,7 +373,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
                 <div class="item-mobile">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
@@ -280,7 +395,7 @@
                     </a>
                 </div>
             </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
                 <div class="item-mobile">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
@@ -302,7 +417,95 @@
                     </a>
                 </div>
             </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
+                <div class="item-mobile">
+                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                        <div class="item-image-wrapper-m">
+                            <figure class="item-image-container">
+                                <picture>
+                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                </picture>
+                            </figure>
+                        </div>
+                        <div class="item-meta-container-m">
+                            <div class="item-name-m" style="background-color: #D9D9D9;">
+                                <span style="display: inline-block;">Biovision 30’s</span>
+                            </div>
+                            <div class="item-price-m" style="background-color: #00B9D8;">
+                                <br>
+                                <span class="price">Rp. 555.000</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 pt-1">
                 <div class="item-mobile">
                     <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">

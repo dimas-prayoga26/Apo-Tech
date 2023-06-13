@@ -111,11 +111,11 @@
                     </h5>
                 </div>
                 <div id="collapseLabel" aria-labelledby="headingLabel" data-parent="#accordion" class="collapse show" style="">
-                    <div class="card-body">
+                    <div style="display: flex;align-items:center" class="card-body">
                         <form>
-                            <label class="checkbox-item out-filter">
-                                <div class="d-flex">
-                                    <div>
+                            <label class="checkbox-item out-filter mt-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="mt-1">
                                         <input type="checkbox" name="checkbox-filter" value="0"> 
                                             <span class="check-toggle"></span>
                                     </div>
@@ -125,8 +125,8 @@
                                 </div>
                             </label>
                             <label class="checkbox-item out-filter">
-                                <div class="d-flex">
-                                    <div>
+                                <div class="d-flex align-items-center">
+                                    <div class="mt-1">
                                         <input type="checkbox" name="checkbox-filter" value="1"> 
                                             <span class="check-toggle"></span>
                                     </div>

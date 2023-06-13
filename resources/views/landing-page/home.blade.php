@@ -8,21 +8,21 @@
 <div id="hero-slider" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 1">
+        <img src="{{ asset('assets-image/landingpage.png') }}" class="d-block w-100" alt="Slide 1">
         <div class="carousel-caption d-none d-md-block">
-            <p>Description 1</p>
+            
         </div>
     </div>
     <div class="carousel-item">
-        <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 2">
+        <img src="{{ asset('assets-image/landingpage.png') }}" class="d-block w-100" alt="Slide 2">
         <div class="carousel-caption d-none d-md-block">
-            <p>Description 2</p>
+            
         </div>
     </div>
     <div class="carousel-item">
-        <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 3">
+        <img src="{{ asset('assets-image/landingpage.png') }}" class="d-block w-100" alt="Slide 3">
         <div class="carousel-caption d-none d-md-block">
-            <p>Description 3</p>
+            
         </div>
     </div>
     </div>
@@ -219,16 +219,16 @@
         </div>
         <div class="carousel-inner rounded">
         <div class="carousel-item active">
-            <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Promo 1">
+            <img src="{{ asset('assets-image/landingpage.png') }}" class="d-block w-100" alt="Promo 1">
         </div>
         <div class="carousel-item">
-            <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Promo 2">
+            <img src="{{ asset('assets-image/landingpage.png') }}" class="d-block w-100" alt="Promo 2">
         </div>
         <div class="carousel-item">
-            <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Promo 3">
+            <img src="{{ asset('assets-image/landingpage.png') }}" class="d-block w-100" alt="Promo 3">
         </div>
         <div class="carousel-item">
-            <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Promo 4">
+            <img src="{{ asset('assets-image/landingpage.png') }}" class="d-block w-100" alt="Promo 4">
         </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

@@ -111,9 +111,9 @@ Route::group(['middleware' => ['role:buyer|seller']] ,function(){
     });
 });
 
-// Route::get('/loading/index', function () {
-//     return view('loading/index');
-// })->name('loading_page');
+Route::get('/keranjang/keranjang', function () {
+    return view('keranjang/keranjang');
+})->name('keranjang');
 
 
 
