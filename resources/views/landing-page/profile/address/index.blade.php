@@ -17,7 +17,9 @@
                             <div class="col-lg-9 col-md-8 m-t-10">
                                 <div class="row mt-3">
                                     <div class="col-12">
-                                        <x-Landingpage.NavbarProfile />
+                                        
+
+                                        <x-Landingpage.NavbarProfile  />
                                     </div>
                                     <hr>
                                 </div>
@@ -53,7 +55,7 @@
                                                             {{ $item->no_handphone }}
                                                             </span>
                                                         </td>
-                                                        <td>
+                                                        <td >
                                                             {{ $item->full_address }}
                                                         </td>
                                                         <td>

@@ -18,7 +18,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-color">
     <div class="container-fluid">
-        <img style="margin-right: 150px; margin-left: 50px" src="{{ asset('assets-image/icon_toko.png') }}" width="50" height="50" alt="">
+        <img style="margin-right: 150px; margin-left: 50px" src="{{ asset('assets-image/logoapotech.png') }}" width="50" height="50" alt="">
       {{-- <a class="navbar-brand" href="" style="margin-right: 150px; margin-left: 50px">Logo</a> --}}
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,18 +26,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item mr-5 mt-1">
-            <a class="nav-link active" aria-current="page" href="{{ route('home.index') }}" style="margin-right: 100px; display:flex; align-items:center; font-size: 20px;"><i class="fas fa-home me-2" style="font-size: 20px;"></i>Beranda</a>
+            <a class="nav-link active" style="color: #ffffff; margin-right: 100px; display:flex" aria-current="page" href="{{ route('home.index') }}" style="margin-right: 100px; display:flex; align-items:center; font-size: 20px;">
+              <i class="fas fa-home me-2" style="font-size: 20px; color: #ffffff;">
+              </i>
+              Beranda
+            </a>
           </li>
           <li class="nav-item mt-2">
             <form class="d-flex">
-              <input style="width: 300px" class="form-control me-2" type="search" placeholder="Cari" aria-label="Cari" />
-              <button class="btn btn-outline-info btn-outline-dark" type="submit"><i class="fas fa-solid fa-magnifying-glass"></i></button>
+              <input style="width: 300px;" class="form-control me-2" type="search" placeholder="Cari" aria-label="Cari" />
+              <button class="btn btn-outline-info btn-outline-light" style="color:#ffffff" type="submit"><i class="fas fa-solid fa-magnifying-glass"></i></button>
             </form>
           </li>
         </ul>
         <ul class="navbar-nav mx-auto" style="margin-right: 50px">
           <li class="nav-item" style="margin-right: 20px; align-items:center; display:flex; margin-bottom:7px;">
-            <button class="btn btn-outline-info btn-outline-dark d-flex" type="submit" style="height:35px; width:45px; justify-content:center"><i class="fa-solid fa-cart-shopping" style="justify-content:center; font-size:23px"></i></button>
+            <button class="btn btn-outline-info btn-outline-light d-flex" type="submit" style="height:35px; width:45px; justify-content:center; color:#ffffff"><i class="fa-solid fa-cart-shopping" style="justify-content:center; font-size:23px"></i></button>
           </li>
           @auth
             <li class="nav-item dropdown ">
@@ -59,7 +63,7 @@
             @else
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('auth.login') }}">
-                    <button class="btn btn-outline-info btn-outline-dark" style="display: flex; margin-bottom:7px">
+                    <button class="btn btn-outline-info btn-outline-light" style="display: flex; margin-bottom:7px; color:#ffffff">
                         <i class="fas fa-user me-2" style="display:flex; align-item:center; font-size:20px"></i>Login
                     </button>
                 </a>

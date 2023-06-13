@@ -2,6 +2,12 @@
 
 @section('title', 'Landing Page Apo Tech')
 <link rel="stylesheet" href="{{ asset('assets-ui/liat_produk.css') }}">
+<style>
+    *{
+        padding:0;
+        margin: 0;
+    }
+</style>
 
 @section('content')
 <div class="row">
@@ -38,13 +44,30 @@
             <label class="d-flex justify-content-start" for="qty" style="font-size: 18px;">Jumlah :</label>
             <div class="input-group mt-2">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus"><i class="fas fa-minus"></i></button>
+                <button onclick="onMin()" type="button" class="btn btn-default btn-number" data-type="minus"><i class="fas fa-minus"></i></button>
               </span>
               <input type="number" id="qty" name="qty" min="1" value="1" class="form-control input-number">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-number" data-type="plus"><i class="fas fa-plus"></i></button>
+                <button onclick="onPlus()" type="button" class="btn btn-default btn-number" data-type="plus"><i  class="fas fa-plus"></i></button>
               </span>
             </div>
+            <script>
+                const valueAyam = document.getElementById("qty");
+                const onPlus = () => {
+                  valueAyam.value = parseInt(valueAyam.value) + 1;
+              
+                  // alert('debug geprek')
+                }
+                const onMin = () => {
+                  
+                  if(valueAyam.value > 1){
+                    valueAyam.value = parseInt(valueAyam.value) - 1;
+                  }
+              
+                  // alert('debug geprek')
+                }
+              </script>
+              
           </div>
           <div class="d-flex justify-content-start mt-3">
             <button type="button" class="btn btn-primary" style="margin-right: 10px;"><i class="fas fa-shopping-cart"></i> Tambah ke Keranjang</button>
@@ -65,6 +88,8 @@
       </div>
     </div>
   </div>
+
+
   <div class="container-store" style="padding: 10px; background-color: #00B9D8;">
       <div class="row">
         <div class="col-md-4" style="display: flex; align-items: center;">
@@ -128,7 +153,7 @@
     </div>
   </div>
   <div class="container-item">
-    <div class="product-header" style="margin-left: 25px;margin-top: 25px;">
+    <div class="product-header" style="margin-left: 25px;margin-top: 25px; max-width: 1200px;">
       <h3 style="color: #fff;">Produk Relevan Dari Penjual Lain</h3>
     </div>
     <div class="category-item-container mt-5">  
@@ -160,7 +185,9 @@
         </div>              
     </div>
   </div>
-  <div class="container-item">
+
+  {{-- end --}}
+  <div class="container-item" style="overflow-x: scroll; white-space: nowrap;">
     <div class="product-header" style="margin-left: 25px;margin-top: 25px;">
       <h3  style="color: #fff;">Produk Lainnya</h3>
     </div>

@@ -31,7 +31,9 @@
                                     </div>
                                     <hr style="margin:16px -16px 16px;border:1px solid rgba(0,0,0,.1)">
                                     <ul class="list-unstyled font-14">
-                                        <p class="title-akun">Daftar Transaksi</p>
+                                      <li class="mb-2">
+                                        <a href="" class="f-size-14">Daftar Transaksi</a>
+                                      </li>
                                         <hr style="margin:16px -16px 16px;border:1px solid rgba(0,0,0,.1)">
                                         <li class="mb-2">
                                             <a href="/transaksiakunpayment" class="f-size-14">Menunggu Pembayaran</a>

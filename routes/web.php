@@ -112,6 +112,10 @@ Route::group(['middleware' => ['role:buyer|seller']] ,function(){
     });
 });
 
+Route::get('/keranjang/keranjang', function () {
+    return view('keranjang/keranjang');
+})->name('keranjang');
+
 
 
 // Route::group(['middleware' => 'auth:buyer'], function () {
