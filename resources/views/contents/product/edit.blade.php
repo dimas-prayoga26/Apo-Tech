@@ -66,6 +66,30 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <p class="">Single Select</p>
+                        <select class="form-control select2-no-search" name="golongan_obat">
+                            <option label="Choose one"></option>
+                            <option value="Obat Bebas" {{ $product->golongan_obat == 'Obat Bebas' ? 'selected' : '' }}>
+                                Obat Bebas
+                            </option>
+                            <option value="Obat Bebas Terbatas" {{ $product->golongan_obat == 'Obat Bebas Terbatas' ? 'selected' : '' }}>
+                                Obat Bebas Terbatas
+                            </option>
+                            <option value="Obat Keras" {{ $product->golongan_obat == 'Obat Keras' ? 'selected' : '' }}>
+                                Obat Keras
+                            </option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label text-dark">Dosis</label>
+                        <input type="name" name="dosis" class="form-control" value="{{ old('dosis') ?? $product->dosis }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label text-dark">Kemasan</label>
+                        <input type="name" name="kemasan" class="form-control" value="{{ old('kemasan') ?? $product->kemasan}}" required>
+                    </div>
+                    <div class="form-group">
                         <label class="form-label text-dark">Description</label>
                         <textarea id="summernote" name="description">{{ $product->description }}</textarea>
                     </div>

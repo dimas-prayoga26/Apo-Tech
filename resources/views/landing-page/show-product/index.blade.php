@@ -5,31 +5,33 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6" style="padding-left: 200px;">
-      <img class="product-image" src="{{ asset('assets-image/images-landing/icon_footer_main.png') }}" alt="Gambar Produk">
-      <div class="sub-images" style="margin-left: 10px;">
-        <img src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 1">
-        <img src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 2">
-        <img src="{{ asset('assets-image/images-landing/milk.png') }}" alt="Sub Produk 3">
-      </div>
+    @if (count($imagePaths) > 1)
+    <div class="col-md-6" style="padding-left: 200px;margin-top:25px;">
+        <img class="product-image" src="{{ asset($imagePaths[0]) }}" alt="Gambar Produk" style="border-radius: 10%;width:300px;height:300px;">
+        <div class="sub-images" style="margin-left: 10px;">
+            @foreach ($imagePaths as $index => $imagePath)
+                @if ($index > 0 && $index <= 3)
+                    <img src="{{ asset($imagePath) }}" alt="Gambar Produk" style="border-radius: 10%;width:50px;margin-right:15px">
+                @endif
+            @endforeach
+        </div>
     </div>
+@else
+    <div class="col-md-6" style="padding-left: 200px;margin-top:40px;">
+        <img class="product-image" src="{{ asset($imagePaths[0]) }}" alt="Gambar Produk" style="border-radius: 10%;width:300px;height:300px;">
+    </div>
+@endif
+    
     <div class="col-md-6" style="margin-top: 10px;">
       <div class="product-details">
-        <h2 class="product-title">3M TEGADERM FILM 1626 10 X 12 CM</h2>
-        <h6>Stok : <span class="product-stock">10</span></h6>
-        <p class="product-type">Tipe Obat : <i class="fas fa-shield-alt" style="color: red;"></i>&nbsp;Resep Dokter&nbsp;</p>
-        <p class="product-price">Rp. 500.000</p>
-        <div class="product-options">
-          <h5>Pilih Opsi:</h5>
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked> Tablet
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option2" autocomplete="off"> Sirup
-            </label>
-          </div>
-        </div>
+        <h2 class="product-title">{{ $product->name }}</h2>
+        <h6>Stok : <span class="product-stock">{{ $product->stock }}</span></h6>
+        @if ($product->is_need_prescription == true)
+            <p class="product-type">Tipe Obat : <i class="fas fa-shield-alt" style="color: red;"></i>&nbsp;Resep Dokter&nbsp;</p>
+        @else 
+            <p class="product-type">Tipe Obat : <i class="fas fa-shield-alt" style="color: green;"></i>&nbsp;Obat Umum&nbsp;</p>
+        @endif
+        <p class="product-price">Rp. {{ $product->price }}</p>
         
         <form>
           <div class="form-group">
@@ -68,7 +70,7 @@
         <div class="col-md-4" style="display: flex; align-items: center;">
           <img src="{{ asset('assets-image/images-landing/icon_footer_main.png') }}" alt="Foto Toko" style="border-radius: 50%; width: 150px; height: 150px; margin-right: 10px;">
           <div>
-            <h5><i class="fa fa-shop"></i><span> Apotec Kelapa Gading</span></h5>
+            <h5><i class="fa fa-shop"></i><span> {{ $username }}</span></h5>
             <span style="padding-left: 2px;"><i class="fa fa-location-dot" style="font-size: 16px;color: aquamarine;"></i> Indramayu</span>
               <div class="section-seller-overview__item section-seller-overview__item--clickable">
                   <div class="section-seller-overview__item-text-value">
@@ -102,30 +104,22 @@
           <div class="tab-pane active" id="info" role="tabpanel" aria-labelledby="info-tab">
               <strong>Golongan Obat</strong>
                 <div>
-                    Obat Keras<img src="keras.jpg" alt="" height="35" width="35">
-                      <div class="alert alert-info alert-dismissable" style="background-color:#EF9486;color:#333;">
-                            <strong>Informasi!</strong> Pembelian produk ini wajib mengunakan resep dokter
-                      </div>
+                    {{ $product->golongan_obat }}
                 </div>
                 <hr>
-              <strong>Komposisi</strong>
+              <strong>Komposisi / Dosis</strong>
                 <div>
-                    Pembelian produk ini wajib mengunakan resep dokter
-                </div>
-                <hr>
-              <strong>Indikasi</strong>
-                <div>
-                    Pembelian produk ini wajib mengunakan resep dokter
+                    {{ $product->dosis }}
                 </div>
                 <hr>
               <strong>Kemasan</strong>
                 <div>
-                    Pembelian produk ini wajib mengunakan resep dokter 
+                    {{ $product->kemasan }}
                 </div>
                 <hr>
-              <strong>Cara Pakai / Dosis</strong>
+              <strong>Deskripsi</strong>
                 <div>
-                    Pembelian produk ini wajib mengunakan resep dokter
+                    {!! $product->description !!}
                 </div>
                 <hr>
           </div>
@@ -139,75 +133,10 @@
     </div>
     <div class="category-item-container mt-5">  
         <div class="row">
+            @foreach($products as $product)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
-                        <div class="item-image-wrapper-m">
-                            <figure class="item-image-container">
-                                <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
-                                </picture>
-                            </figure>
-                        </div>
-                        <div class="item-meta-container-m">
-                            <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
-                            </div>
-                            <div class="item-price-m" style="background-color: #00B9D8;">
-                                <br>
-                                <span class="price">Rp. 555.000</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
-                        <div class="item-image-wrapper-m">
-                            <figure class="item-image-container">
-                                <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
-                                </picture>
-                            </figure>
-                        </div>
-                        <div class="item-meta-container-m">
-                            <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
-                            </div>
-                            <div class="item-price-m" style="background-color: #00B9D8;">
-                                <br>
-                                <span class="price">Rp. 555.000</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
-                        <div class="item-image-wrapper-m">
-                            <figure class="item-image-container">
-                                <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
-                                </picture>
-                            </figure>
-                        </div>
-                        <div class="item-meta-container-m">
-                            <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
-                            </div>
-                            <div class="item-price-m" style="background-color: #00B9D8;">
-                                <br>
-                                <span class="price">Rp. 555.000</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                    <a href="{{ route('showProduct.index', ['name' => $product->name]) }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
                                 <picture>
@@ -227,6 +156,7 @@
                     </a>
                 </div>
             </div>  
+            @endforeach
         </div>              
     </div>
   </div>
@@ -236,9 +166,10 @@
     </div>
     <div class="category-item-container mt-5">  
         <div class="row">
+            @foreach($products as $product)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
+                    <a href="{{ route('showProduct.index', ['name' => $product->name]) }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
                                 <picture>
@@ -258,72 +189,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
-                        <div class="item-image-wrapper-m">
-                            <figure class="item-image-container">
-                                <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
-                                </picture>
-                            </figure>
-                        </div>
-                        <div class="item-meta-container-m">
-                            <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
-                            </div>
-                            <div class="item-price-m" style="background-color: #00B9D8;">
-                                <br>
-                                <span class="price">Rp. 555.000</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
-                        <div class="item-image-wrapper-m">
-                            <figure class="item-image-container">
-                                <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
-                                </picture>
-                            </figure>
-                        </div>
-                        <div class="item-meta-container-m">
-                            <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
-                            </div>
-                            <div class="item-price-m" style="background-color: #00B9D8;">
-                                <br>
-                                <span class="price">Rp. 555.000</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>     
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="item-mobile">
-                    <a href="{{ route('showProduct.index') }}" style="text-decoration:none; color:inherit;">
-                        <div class="item-image-wrapper-m">
-                            <figure class="item-image-container">
-                                <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
-                                </picture>
-                            </figure>
-                        </div>
-                        <div class="item-meta-container-m">
-                            <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
-                            </div>
-                            <div class="item-price-m" style="background-color: #00B9D8;">
-                                <br>
-                                <span class="price">Rp. 555.000</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>  
+            @endforeach
         </div>              
     </div>
   </div>

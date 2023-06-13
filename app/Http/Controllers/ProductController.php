@@ -73,6 +73,9 @@ class ProductController extends Controller
                     'description'           => $request->description,
                     'price'                 => $request->price,
                     'stock'                 => $request->stock,
+                    'golongan_obat'         => $request->golongan_obat,
+                    'kemasan'               => $request->kemasan,
+                    'dosis'                 => $request->dosis,
                     'is_need_prescription'  => $request->is_need_prescription ? true : false,
                 ]+$image
             );
@@ -165,6 +168,9 @@ class ProductController extends Controller
                 'description'           => $request->description,
                 'price'                 => $request->price,
                 'stock'                 => $request->stock,
+                'golongan_obat'         => $request->golongan_obat,
+                'kemasan'               => $request->kemasan,
+                'dosis'                 => $request->dosis,
                 'is_need_prescription'  => $request->is_need_prescription ? true : false,
             ] + $image);
 
@@ -225,11 +231,9 @@ class ProductController extends Controller
 
 
     public function datatable(Request $request){
-        $data = Product::with('category')->get();
+        $user = Auth::user();
+        $data = Product::with('user', 'category')->where('user_id', $user->id)->get();
 
-
-        // $data = $data->get();
-        
         return DataTables::of($data)->make();
     }
 

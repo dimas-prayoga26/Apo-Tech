@@ -41,6 +41,9 @@
                                 <th class="border-bottom-0">Stock</th>
                                 <th class="border-bottom-0">Price</th>
                                 <th class="border-bottom-0">Description</th>
+                                <th class="border-bottom-0">Golongan Obat</th>
+                                <th class="border-bottom-0">Kemasan</th>
+                                <th class="border-bottom-0">Dosis</th>
                                 <th class="border-bottom-0">Is Prescription</th>
                                 <th class="border-bottom-0">Action</th>
                             </tr>
@@ -125,22 +128,41 @@
                 
             },
             {
-                    targets: 6,
-                    width: 150,
-                    render: function(data, type, full, meta) {
-                        
-                        let state = ``;
-                        // data.map(function(item){
-                            // state += `<a class="btn btn-icon btn-success me-1" href="javascript:void(0);"></a>`;
-                            if(data == 1){
-                                state = `<a class="badge bg-danger me-1" href="javascript:void(0);">Is Prescription</a>`;
-                            }else{
-                                state = `<a class="badge bg-success me-1" href="javascript:void(0);">Not Prescription</a>`;
-                            }
+                targets: 6,
+                render: function(data, type, full, meta) {
+                    
+                    let state = ``;
+                    // data.map(function(item){
+                        // state += `<a class="btn btn-icon btn-success me-1" href="javascript:void(0);"></a>`;
+                        if(data == `Obat Bebas`){
+                            state = `<a class="badge bg-success me-1" href="javascript:void(0);">Obat Bebas</a>`;
+                        }else if(data == `Obat Bebas Terbatas`){
+                            state = `<a class="badge bg-info me-1" href="javascript:void(0);">Obat Bebas Terbatas</a>`;
+                        }else{
+                            state = `<a class="badge bg-info me-1" href="javascript:void(0);">Obat Keras</a>`;
+                        }
 
-                        return state;
-                    },
+                    return state;
                 },
+                
+            },
+            {
+                targets: 9,
+                // width: 150,
+                render: function(data, type, full, meta) {
+                    
+                    let state = ``;
+                    // data.map(function(item){
+                        // state += `<a class="btn btn-icon btn-success me-1" href="javascript:void(0);"></a>`;
+                        if(data == 1){
+                            state = `<a class="badge bg-danger me-1" href="javascript:void(0);">Is Prescription</a>`;
+                        }else{
+                            state = `<a class="badge bg-success me-1" href="javascript:void(0);">Not Prescription</a>`;
+                        }
+
+                    return state;
+                },
+            },
             {
                 targets: -1,
                 render: function(data, type, full, meta) {
@@ -175,6 +197,9 @@
                 { data: 'stock'},
                 { data: 'price'},
                 { data: 'description'},
+                { data: 'golongan_obat'},
+                { data: 'kemasan'},
+                { data: 'dosis'},
                 { data: 'is_need_prescription'},
                 { data: 'id'}, 
             ],

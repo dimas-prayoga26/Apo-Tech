@@ -57,6 +57,30 @@
                         <select id="category" name="category_id[]" class="form-control select2 form-select" multiple="multiple" required></select>
                     </div>
                     <div class="form-group">
+                        <p class="">Single Select</p>
+                        <select class="form-control select2-no-search" name="golongan_obat">
+                            <option label="Choose one">
+                            </option>
+                            <option value="Obat Bebas">
+                                Obat Bebas
+                            </option>
+                            <option value="Obat Bebas Terbatas">
+                                Obat Bebas Terbatas
+                            </option>
+                            <option value="Obat Keras">
+                                Obat Keras
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label text-dark">Dosis</label>
+                        <input type="name" name="dosis" class="form-control" value="{{ old('dosis') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label text-dark">Kemasan</label>
+                        <input type="name" name="kemasan" class="form-control" value="{{ old('kemasan') }}" required>
+                    </div>
+                    <div class="form-group">
                         <label class="form-label text-dark">Description</label>
                         <textarea id="summernote" name="description"></textarea>
                     </div>
