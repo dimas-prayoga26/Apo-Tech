@@ -18,7 +18,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-color">
     <div class="container-fluid">
-        <img style="margin-right: 150px; margin-left: 50px" src="{{ asset('assets-image/icon_toko.png') }}" width="50" height="50" alt="">
+        <img style="margin-right: 150px; margin-left: 50px" src="{{ asset('assets-image/logoapotech.png') }}" width="50" height="50" alt="">
       {{-- <a class="navbar-brand" href="" style="margin-right: 150px; margin-left: 50px">Logo</a> --}}
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -92,6 +92,10 @@ Route::group(['middleware' => ['role:buyer']] ,function(){
     });
 });
 
+// Route::get('/loading/index', function () {
+//     return view('loading/index');
+// })->name('loading_page');
+
 
 
 // Route::group(['middleware' => 'auth:buyer'], function () {
