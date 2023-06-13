@@ -7,6 +7,9 @@
         padding:0;
         margin: 0;
     }
+    .input-group-btn .btn-number {
+    height: calc(80% - 2px);
+  }
 </style>
 
 @section('content')
@@ -41,16 +44,18 @@
         
         <form>
           <div class="form-group">
-            <label class="d-flex justify-content-start" for="qty" style="font-size: 18px;">Jumlah :</label>
+            <label class="d-flex justify-content-start" for="qty" style="font-size: 18px;">Jumlah :</label>           
             <div class="input-group mt-2">
-              <span class="input-group-btn">
-                <button onclick="onMin()" type="button" class="btn btn-default btn-number" data-type="minus"><i class="fas fa-minus"></i></button>
-              </span>
-              <input type="number" id="qty" name="qty" min="1" value="1" class="form-control input-number">
-              <span class="input-group-btn">
-                <button onclick="onPlus()" type="button" class="btn btn-default btn-number" data-type="plus"><i  class="fas fa-plus"></i></button>
-              </span>
-            </div>
+              <div class="input-group-prepend">
+                <button onclick="onMin()" type="button" class="btn btn btn-secondary btn-number rounded-0" data-type="minus" style="height: calc(100% - 0px); box-shadow: none;"><i class="fas fa-minus"></i></button>
+              </div>
+              <input type="number" id="qty" name="qty" min="1" value="1" class="form-control input-number" style="width: 80px;">
+              <div class="input-group-append">
+                <button onclick="onPlus()" type="button" class="btn btn btn-secondary btn-number rounded-0" data-type="plus" style="height: calc(100% - 0px); box-shadow: none;"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>            
+            
+
             <script>
                 const valueAyam = document.getElementById("qty");
                 const onPlus = () => {
