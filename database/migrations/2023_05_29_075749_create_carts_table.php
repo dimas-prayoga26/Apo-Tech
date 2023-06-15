@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('kabupaten');
-            $table->string('kecamatan');
-            $table->string('desa');
-            $table->string('full_address');
-            $table->double('latitude')->nullable();
-            $table->double('longitude')->nullable();
+            $table->foreignUuid('user_id');
+            $table->foreignUuid('product_id');
+            $table->integer('qty')->unsigned();
+            $table->integer('product_price')->unsigned();
+            $table->string('product_name');
+            $table->string('display_image');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('carts');
     }
 };

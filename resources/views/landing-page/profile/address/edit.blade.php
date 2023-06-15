@@ -143,6 +143,17 @@
                                                 @enderror
                                             </div> --}}
                                             <div class='form-group mb-3'>
+                                                <label for='desa' class='mb-2'>Desa</label>
+                                                <input type='text' name='desa'
+                                                    class='form-control @error('desa') is-invalid @enderror'
+                                                    value='{{ $item->desa ?? old('desa') }}'>
+                                                @error('desa')
+                                                    <div class='invalid-feedback'>
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <div class='form-group mb-3'>
                                                 <label for='full_address' class='mb-2'>Detail Alamat</label>
                                                 <input type='text' name='full_address'
                                                     class='form-control @error('full_address') is-invalid @enderror'

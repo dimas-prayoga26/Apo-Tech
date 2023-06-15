@@ -45,6 +45,7 @@ class AddressController extends Controller
             // 'penerima' => ['required'],
             // 'no_handphone' => ['required'],
             // 'kabupaten' => ['required'],
+            'desa' => ['required'],
             'kecamatan' => ['required'],
             'full_address' => ['required'],
             'latitude' => ['required'],
@@ -53,7 +54,7 @@ class AddressController extends Controller
 
         DB::beginTransaction();
         try {
-            $data = request()->only(['kecamatan', 'full_address', 'latitude', 'longitude']);
+            $data = request()->only(['desa', 'kecamatan', 'full_address', 'latitude', 'longitude']);
 
             if (request('is_default')) {
                 // ubah alamat sebelumnya is default jadi 0
@@ -92,6 +93,7 @@ class AddressController extends Controller
             // 'penerima' => ['required'],
             // 'no_handphone' => ['required'],
             // 'kabupaten' => ['required'],
+            'desa' => ['required'],
             'kecamatan' => ['required'],
             'full_address' => ['required'],
             'latitude' => ['required'],
@@ -100,7 +102,7 @@ class AddressController extends Controller
         $item = Address::where('id', $id)->firstOrFail();
         DB::beginTransaction();
         try {
-            $data = request()->only(['kecamatan', 'full_address', 'latitude', 'longitude']);
+            $data = request()->only(['desa', 'kecamatan', 'full_address', 'latitude', 'longitude']);
 
             if (request('is_default')) {
                 // ubah alamat sebelumnya is default jadi 0
@@ -138,7 +140,7 @@ class AddressController extends Controller
 
     public function getVillages($id)
     {
-        $villages = villages::where('district_id', $id)->pluck('name', 'id');
+        $villages = villages::where('district_code', $id)->pluck('name', 'code');
         return response()->json($villages);
     }
 

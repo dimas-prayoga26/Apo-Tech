@@ -83,25 +83,23 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                @error('kabupaten')
+                                                @error('kecamatan')
                                                     <div class='invalid-feedback'>
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                             </div>
-                                            {{-- <div class='form-group mb-3'>
-                                                <label for="name" class="col-md-4 col-form-label">Desa</label>
-                                                <div class="col-md-6">
-                                                    <select name="village" id="village" class="form-control" disabled>
-                                                        <option value="">== Select desa ==</option>
-                                                    </select>
-                                                </div>
-                                                @error('kabupaten')
+                                            <div class='form-group mb-3'>
+                                                <label for='desa' class='mb-2'>Desa</label>
+                                                <input type='text' name='desa'
+                                                    class='form-control @error('desa') is-invalid @enderror'
+                                                    value='{{ old('desa') }}'>
+                                                @error('desa')
                                                     <div class='invalid-feedback'>
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
-                                            </div> --}}
+                                            </div>
                                             <div class='form-group mb-3'>
                                                 <label for='full_address' class='mb-2'>Detail Alamat</label>
                                                 <input type='text' name='full_address'
@@ -181,6 +179,35 @@
                 marker.setPosition(pos)
             })
         }
+
+        // Mendengarkan perubahan pada pilihan kecamatan
+    //     document.getElementById('kecamatan').addEventListener('change', function() {
+    //     var kecamatanId = document.getElementById('kecamatan').value;
+
+    //     // Mengirim permintaan Ajax untuk mendapatkan opsi desa berdasarkan kecamatan
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open('GET', '/get-villages/' + kecamatanId, true);
+    //     xhr.onload = function() {
+    //         if (xhr.status === 200) {
+    //             var desas = JSON.parse(xhr.responseText);
+    //             var desaSelect = document.getElementById('village');
+    //             desaSelect.innerHTML = ''; // Menghapus opsi desa sebelumnya
+    //             console.log(desas);
+    //             // Menambahkan opsi desa baru
+    //             for (var id in desas) {
+    //                 if (desas.hasOwnProperty(id)) {
+    //                     var option = document.createElement('option');
+    //                     option.value = id;
+    //                     option.textContent = desas[id];
+    //                     desaSelect.appendChild(option);
+    //                 }
+    //             }
+
+    //             desaSelect.disabled = true; // Mengaktifkan pilihan desa
+    //         }
+    //     };
+    //     xhr.send();
+    // });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtOyW9dEsEt0OiljZQ5k4tgZCbOO3jmn8&callback=myMap">
     </script>

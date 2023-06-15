@@ -59,8 +59,8 @@
                                                             {{ $item->full_address }}
                                                         </td>
                                                         <td>
-                                                            JAWA BARAT, KABUPATEN
-                                                            INDRAMAYU, {{ $item->kecamatan }}
+                                                            {{ $item->kecamatan }}, KABUPATEN
+                                                            INDRAMAYU
                                                         </td>
                                                         <td class="d-flex justify-content-between">
                                                             <div class="">

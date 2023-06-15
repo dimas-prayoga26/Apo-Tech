@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Traits\Uuid;
-use App\Models\Category;
-use App\Models\ProductImage;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class Cart extends Model
 {
     use HasFactory, Uuid;
 
@@ -19,22 +19,19 @@ class Product extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['display_image'];
+    protected $appends = ['image_url'];
 
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
 
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function images(){
-        return $this->hasMany(ProductImage::class);
+    public function product(){
+        return $this->hasOne(Product::class, 'id','product_id');
     }
 
-    protected function getDisplayImageAttribute($value)
+    protected function getImageUrlAttribute($value)
     {
-        return url($this->images[0]->image_url);
+        return url($this->display_image);
     }
 }

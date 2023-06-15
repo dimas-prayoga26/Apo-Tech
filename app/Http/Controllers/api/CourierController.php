@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\Product;
-use App\Models\Category;
+use App\Models\Courier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class CourierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,9 @@ class CategoryController extends Controller
     public function index()
     {
         try {
-            $data = Category::get();
-            return $this->okResponse('Success',$data);
+            return $this->okResponse('success', Courier::get());  
         } catch (\Throwable $th) {
-            echo $th->getMessage();
+            return $this->serverErrorResponse($th->getMessage());
         }
     }
 
@@ -33,14 +31,9 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showProducts($id)
+    public function show(string $id)
     {
-        try {
-            $data = Product::where('category_id', $id)->with(['images', 'user.user_detail', 'user.user_detail.address'])->get();
-            return $this->okResponse('Success',$data);
-        } catch (\Throwable $th) {
-            echo $th->getMessage();
-        }
+        //
     }
 
     /**

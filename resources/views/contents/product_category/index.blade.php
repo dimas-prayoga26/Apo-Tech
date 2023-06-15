@@ -61,7 +61,7 @@
                             @csrf
                             <div class="form-group">
                             {{-- <label for="id" class="form-label text-dark">Name</label> --}}
-                            <input type="hiden" id="id" name="id">
+                            <input type="hidden" id="id" name="id">
                             <label for="name" class="form-label text-dark">Name</label>
                             <input type="text" name="name" class="form-control" value="" id="name" required>
                             <label class="form-label text-dark">Image</label>

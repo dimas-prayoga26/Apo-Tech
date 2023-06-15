@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Throwable;
+use App\Models\Cart;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
@@ -20,18 +21,19 @@ class ProductSeeder extends Seeder
     {
         try {
             DB::beginTransaction();
-            $img = ['assets-image/p1.jpeg', 'assets-image/p2.jpeg', 'assets-image/p3.jpeg', 'assets-image/p4.jpeg', 'assets-image/p5.jpeg'];
-            $img2 = ['assets-image/p5.jpeg', 'assets-image/p4.jpeg', 'assets-image/p3.jpeg', 'assets-image/p2.jpeg', 'assets-image/p1.jpeg'];
+            $img = ['assets-image/p1.jpg', 'assets-image/p2.jpg', 'assets-image/p3.jpg', 'assets-image/p4.jpg', 'assets-image/p5.jpg'];
+            $img2 = ['assets-image/p5.jpg', 'assets-image/p4.jpg', 'assets-image/p3.jpg', 'assets-image/p2.jpg', 'assets-image/p1.jpg'];
             $category = Category::create([
                 'name' => 'Suplement',
-                'image' => 'assets-image/p5.jpeg'
+                'image' => 'assets-image/p6.png'
             ]);
             $category1 = Category::create([
                 'name' => 'Vitamin',
-                'image' => 'assets-image/p1.jpeg'
+                'image' => 'assets-image/p7.jpg'
             ]);
 
             $user = User::role('admin')->first();
+            $buyer = User::role('buyer')->first();
 
             $product = Product::create([
                 'category_id' => $category->id,
@@ -41,6 +43,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
 
             $product1 = Product::create([
@@ -51,6 +56,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
 
             $product2 = Product::create([
@@ -61,6 +69,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product3 = Product::create([
                 'category_id' => $category->id,
@@ -70,6 +81,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product4 = Product::create([
                 'category_id' => $category->id,
@@ -79,6 +93,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product5 = Product::create([
                 'category_id' => $category->id,
@@ -88,6 +105,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product6 = Product::create([
                 'category_id' => $category->id,
@@ -97,6 +117,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product7 = Product::create([
                 'category_id' => $category->id,
@@ -106,6 +129,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product8 = Product::create([
                 'category_id' => $category->id,
@@ -115,6 +141,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product9 = Product::create([
                 'category_id' => $category->id,
@@ -124,6 +153,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product10 = Product::create([
                 'category_id' => $category->id,
@@ -133,6 +165,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product11 = Product::create([
                 'category_id' => $category->id,
@@ -142,6 +177,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product12 = Product::create([
                 'category_id' => $category->id,
@@ -151,6 +189,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product13 = Product::create([
                 'category_id' => $category->id,
@@ -160,6 +201,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product14 = Product::create([
                 'category_id' => $category->id,
@@ -169,6 +213,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product15 = Product::create([
                 'category_id' => $category->id,
@@ -178,6 +225,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product16 = Product::create([
                 'category_id' => $category->id,
@@ -187,6 +237,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product17 = Product::create([
                 'category_id' => $category->id,
@@ -196,6 +249,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product18 = Product::create([
                 'category_id' => $category->id,
@@ -205,6 +261,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product19 = Product::create([
                 'category_id' => $category->id,
@@ -214,6 +273,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
             $product20 = Product::create([
                 'category_id' => $category->id,
@@ -223,6 +285,9 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'is_need_prescription' => false,
                 'price' => 150000,
+                'kemasan' => 'tablet',
+                'dosis' => '2 x 1',
+                'golongan_obat' => 'Obat Bebas'
             ]);
 
             foreach($img as $data){
@@ -353,6 +418,31 @@ class ProductSeeder extends Seeder
                     'product_id' => $product20->id
                 ]);
             }
+
+            Cart::create([
+                'user_id' => $buyer->id,
+                'product_id' => $product->id,
+                'product_name' => $product->name,
+                'product_price' => $product->price,
+                'display_image' => $img[0],
+                'qty' => 2
+            ]);
+            Cart::create([
+                'user_id' => $buyer->id,
+                'product_id' => $product1->id,
+                'product_name' => $product1->name,
+                'product_price' => $product1->price,
+                'display_image' => $img2[0],
+                'qty' => 2
+            ]);
+            Cart::create([
+                'user_id' => $buyer->id,
+                'product_id' => $product2->id,
+                'product_name' => $product2->name,
+                'product_price' => $product2->price,
+                'display_image' => $img[0],
+                'qty' => 2
+            ]);
 
             DB::commit();
         } catch (Throwable $th) {

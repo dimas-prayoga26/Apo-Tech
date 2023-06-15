@@ -7,10 +7,10 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Courier;
+use App\Models\UserType;
 use App\Models\Permission;
 use App\Models\StatusUser;
 use App\Models\UserApotech;
-use App\Models\UserType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -99,17 +99,23 @@ class UserSeeder extends Seeder
                 'status_user_id' => $status1->id,
             ])->assignRole(['admin']);
 
-            UserApotech::create([
+            $adminP = UserApotech::create([
                 'user_id'       => $admin->id,
                 'first_name'    => 'Super',
                 'last_name'     => 'Admin',
                 'phone_number'  => '12345',
                 'image'         => 'virtual/assets/img/faces/6.png',
-                // 'address_id'    => $address1->id,
                 'registered_at' => date('Y-m-d')
             ]);
 
-
+            Address::create([
+                'user_apotech_id' => $adminP->id,
+                'kecamatan' => 'Widasari',
+                'desa' => 'Ujung Jaya',
+                'full_address' => 'Desa ujung jaya blok A no.87',
+                'latitude'      => '-6.327583',
+                'longitude'     => '108.324936',
+            ]);
 
             $courier = User::create([
                 'username' => 'Courier123',
@@ -118,7 +124,7 @@ class UserSeeder extends Seeder
                 'status_user_id' => $status2->id,
             ])->assignRole(['courier']);
 
-            UserApotech::create([
+            $courierP = UserApotech::create([
                 'user_id'       => $courier->id,
                 'first_name'    => 'Courier',
                 'last_name'     => 'Expedition',
@@ -126,6 +132,15 @@ class UserSeeder extends Seeder
                 'image'         => 'virtual/assets/img/faces/6.png',
                 'registered_at' => date('Y-m-d')
 
+            ]);
+
+            Address::create([
+                'user_apotech_id' => $courierP->id,
+                'kecamatan' => 'Widasari',
+                'desa' => 'Ujung Jaya',
+                'full_address' => 'Desa Leuwigede blok bugel no.09',
+                'latitude'      => '-6.425721',
+                'longitude'     => '108.081242',
             ]);
 
 
@@ -144,31 +159,46 @@ class UserSeeder extends Seeder
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'status_user_id' => $status2->id,
             ])->assignRole('buyer');
-
-
-            $Users = [
+    
+            $sellerP = UserApotech::create(
                 [
                     'user_id'                   => $Users_Seller->id,
                     'first_name'                => 'Its',
                     'last_name'                 => 'Seller',
                     'phone_number'              => '12345',
                     'image'                     => NULL,
-                    'registered_at'             => date('Y-m-d'),
-                    'jenis_kelamin'             => 'Laki-Laki'
-                ], [
+                    'registered_at'             => date('Y-m-d')
+                ]);
+
+            $buyerP = UserApotech::create(
+                [
                     'user_id'                   => $Users_Buyer->id,
                     'first_name'                => 'Its',
                     'last_name'                 => 'Buyer',
                     'phone_number'              => '67890',
-                    'image'                     => NULL,
-                    'registered_at'             =>  date('Y-m-d'),
-                    'jenis_kelamin'             => 'Perempuan'
-                ],
-            ];
+                    'image'                     =>  NULL,
+                    'registered_at'             => date('Y-m-d')
+                ]
+                );
 
-            foreach ($Users as $data) {
-                $user = UserApotech::updateOrCreate($data);
-            }
+                Address::create([
+                    'user_apotech_id' => $sellerP->id,
+                    'kecamatan' => 'Jatibarang',
+                    'desa' => 'Ujung Jaya',
+                    'full_address' => 'Desa bulak blok b no.78',
+                    'latitude'      => '-6.425721',
+                    'longitude'     => '108.081242',
+                ]);
+                Address::create([
+                    'user_apotech_id' => $buyerP->id,
+                    'kecamatan' => 'Jatibarang',
+                    'desa' => 'Ujung Jaya',
+                    'full_address' => 'Desa bulak blok b no.80',
+                    'latitude'      => '-6.425721',
+                    'longitude'     => '108.081242',
+                ]);
+            
+
 
             // $user[0]->assignRole('seller');
             // $user[1]->assignRole('buyer');

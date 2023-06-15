@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
-
-
-            // drop column
-            $table->dropColumn('desa');
-            $table->dropColumn('kabupaten');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer('shipping_cost')->nullable();
         });
     }
 
@@ -25,12 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
-
-
-            // drop column
-            $table->string('desa')->nullable();
-            $table->string('kabupaten')->nullable();
+        Schema::table('orders', function (Blueprint $table) {
+            //
         });
     }
 };

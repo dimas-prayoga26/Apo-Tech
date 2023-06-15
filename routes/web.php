@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\landingpage\AddressController;
 use App\Http\Controllers\landingpage\ProfileController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RequestVerificationController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -25,11 +26,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/home','App\Http\Controllers\landingpage\HomeController@index')->name('home.index');
 Route::get('/semua_product','App\Http\Controllers\landingpage\AllProductController@index')->name('allProduct.index');
-Route::get('/liat_product/{name}','App\Http\Controllers\landingpage\ShowProductController@index')->name('showProduct.index');
+Route::get('/liat_product/{name}/{id}','App\Http\Controllers\landingpage\ShowProductController@index')->name('showProduct.index');
 Route::get('/profile/wishlist','App\Http\Controllers\landingpage\WishlistController@index')->name('wishlist.index');
 Route::get('/profile/order_information','App\Http\Controllers\landingpage\ProductOrderInformationShopController@index')->name('orderInformation.index');
 Route::get('/toko','App\Http\Controllers\landingpage\ShowShopController@index')->name('toko.index');
-Route::get('/home/checkout','App\Http\Controllers\landingpage\CheckoutProductController@index')->name('checkout.index');
+Route::get('/home/checkout/{name}/{id}','App\Http\Controllers\landingpage\CheckoutProductController@index')->name('checkout.index');
+
 
 Route::get('/confirm_verification_email', function () {
     return view('verifyAccount');
@@ -55,14 +57,14 @@ Route::get('/reset-password/{token}', function (string $token) {
 Route::post('/reset-password', [AuthController::class, 'passwordReset'])->name('password.update');
 
 Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(function () {
-
+    
     Route::get('/register', 'register')->name('register');
     Route::post('/register', 'create')->name('register.process');
 
     Route::get('/login', 'index')->name('login');
     Route::post('/login', 'authenticate')->name('login.process');
     Route::get('/logout', 'logout')->name('logout');
-
+    
 });
 
 /* ================================================================================================================ *
@@ -73,33 +75,36 @@ Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(f
 
 Route::group(['middleware' => ['role:admin|seller|courier']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    
     Route::get('product-category/datatable', [ProductCategoryController::class, 'datatable'])->name('product-category.datatable');
     Route::get('product-category/select-data', [ProductCategoryController::class, 'select2'])->name('product-category.select2');
     Route::resource('product-category', ProductCategoryController::class);
-
+    
     Route::get('product/datatable', [ProductController::class, 'datatable'])->name('product.datatable');
     Route::resource('product', ProductController::class);
     Route::post('product/prescription', [ProductController::class, 'prescription'])->name('product.is-prescription');
     Route::post('product/deleteImgDropify', [ProductController::class, 'deleted_dropify'])->name('product.deleted_dropify');
-
+    
     // request verification
     Route::get('shipments/datatable', [RequestVerificationController::class, 'datatable'])->name('shipment.datatable');
     Route::resource('shipment', RequestVerificationController::class);
-
+    
     // request-verification
     Route::get('request-verification/datatable', [RequestVerificationController::class, 'datatable'])->name('request-verification.datatable');
     Route::resource('request-verification', RequestVerificationController::class);
-
+    
     Route::post('request-verification', [RequestVerificationController::class,'set_verification'])->name('request-verification.set-verification');
     
 });
 
 Route::group(['middleware' => ['role:buyer|seller']] ,function(){
+    // Route::get('/get-villages/{code}', 'App\Http\Controllers\VillageController@getVillages');
     Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
     Route::get('profile/edit',[ProfileController::class,'edit'])->name('profile.edit');
     Route::post('profile/edit',[ProfileController::class,'update'])->name('profile.update');
     Route::resource('address',AddressController::class);
+    Route::post('/order/order',[OrderController::class, 'storeOrder']);
+    Route::resource('/order',OrderController::class);
 
     // upload license
     Route::post('/upload-license',[ProfileController::class,'upload_license'])->name('upload-license');

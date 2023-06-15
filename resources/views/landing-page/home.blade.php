@@ -123,7 +123,7 @@
         {{-- {{ dd($products) }} --}}
         <div class="col-md-3 col-sm-6 col-xs-6">
             <div class="item-mobile">
-                <a href="{{ route('showProduct.index', ['name' => $product->name]) }}" style="text-decoration:none; color:inherit;">
+                <a href="{{ route('showProduct.index', ['name' => $product->name, 'id' => $product->id]) }}" style="text-decoration:none; color:inherit;">
                     <div class="item-image-wrapper-m">
                         <figure class="item-image-container">
                             <picture>
@@ -185,7 +185,7 @@
             @foreach($products as $product)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="item-mobile">
-                    <a href="{{ route('showProduct.index', ['name' => $product->name]) }}" style="text-decoration:none; color:inherit;">
+                    <a href="{{ route('showProduct.index', ['name' => $product->name, 'id' => $product->id]) }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
                                 <picture>
@@ -213,7 +213,7 @@
             @foreach($products as $product)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="item-mobile">
-                    <a href="{{ route('showProduct.index', ['name' => $product->name]) }}" style="text-decoration:none; color:inherit;">
+                    <a href="{{ route('showProduct.index', ['name' => $product->name, 'id' => $product->id]) }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
                                 <picture>

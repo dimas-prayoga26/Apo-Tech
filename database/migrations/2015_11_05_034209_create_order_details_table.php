@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('orders_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('product_id')->constrained();
-            $table->string('prescription');
             $table->integer('qty');
-            $table->integer('subtotal');
-            $table->string('note');
             $table->timestamps();
         });
     }

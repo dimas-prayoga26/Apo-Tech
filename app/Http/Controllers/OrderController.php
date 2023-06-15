@@ -1,39 +1,54 @@
 <?php
 
-namespace App\Http\Controllers\landingpage;
+namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Address;
 use App\Models\Product;
 use App\Models\OrderDetail;
+use App\Models\UserApotech;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ShowProductController extends Controller
+class OrderController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index($name, $id)
     {
-        $product = Product::where('name', $name)->first();
-        $nameToko = Product::with('user')->get();
-        $products = Product::where('name', $name)->with('images')->take(4)->get();
+    // dd($id);
+    $user = Auth::user();
+    $userApotechesPenjual = Product::with('user')->where('id', $id)->get();
+    $product = Product::with('images')->find($id);
+    // $productImages = $product->images;
 
-        $product = Product::where('name', $name)->first();
+    $userApoteches = UserApotech::with('user')->where('user_id', $user->id)->get();
+    $userAddress = Address::with('userApotech')->where('user_apotech_id', $userApoteches->first()->id)->get();
+    
+    // Mengambil data produk berdasarkan nama
+    $product = Product::where('name', $name)->first();
 
-            if ($product) {
-                $imagePaths = $product->images->pluck('image');
+    // Mengambil harga produk
+    $price = $product->price;
 
-                // dd($imagePaths);
-            }
+    // Menampilkan halaman checkout dengan data pesanan
+    return view('landing-page.checkout.index', compact('user', 'product', 'price', 'userApoteches' , 'userAddress', 'userApotechesPenjual'));
+}
 
-        foreach ($nameToko as $namaToko) {
-            $username = $product->user->username;
-            // Lakukan sesuatu dengan username...
-        }
-        return view('landing-page.show-product.index', compact('product', 'products', 'username', 'imagePaths'));
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function storeOrder(Request $request)
     {
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
@@ -92,5 +107,37 @@ class ShowProductController extends Controller
             DB::rollback();
             return $this->serverErrorResponse($th);
         }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

@@ -76,7 +76,11 @@
           </div>
           <div class="d-flex justify-content-start mt-3">
             <button type="button" class="btn btn-primary" style="margin-right: 10px;"><i class="fas fa-shopping-cart"></i> Tambah ke Keranjang</button>
-            <button type="button" class="btn btn-success"><i class="fas fa-money-bill-wave"></i> Beli Sekarang</button>
+            <a href="{{ route('checkout.index', ['name' => $product->name, 'id' => $product->id]) }}" class="btn btn-success">
+              <i class="fas fa-money-bill-wave"></i> Beli Sekarang
+            </a>
+          
+
           </div>
           <div class="d-flex justify-content-start mt-3">
             <span style="margin-right: 10px; font-size: 18px;">Bagikan:</span>
@@ -166,21 +170,21 @@
             @foreach($products as $product)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="item-mobile">
-                    <a href="{{ route('showProduct.index', ['name' => $product->name]) }}" style="text-decoration:none; color:inherit;">
+                    <a href="{{ route('showProduct.index', ['name' => $product->name, 'id' => $product->id]) }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
                                 <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                    <img src="{{ asset($product->images->pluck('image')->first()) }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
                                 </picture>
                             </figure>
                         </div>
                         <div class="item-meta-container-m">
                             <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
+                                <span style="display: inline-block;">{{ $product->name }}</span>
                             </div>
                             <div class="item-price-m" style="background-color: #00B9D8;">
                                 <br>
-                                <span class="price">Rp. 555.000</span>
+                                <span class="price">Rp. {{ $product->price }}</span>
                             </div>
                         </div>
                     </a>
@@ -201,21 +205,21 @@
             @foreach($products as $product)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="item-mobile">
-                    <a href="{{ route('showProduct.index', ['name' => $product->name]) }}" style="text-decoration:none; color:inherit;">
+                    <a href="{{ route('showProduct.index', ['name' => $product->name, 'id' => $product->id]) }}" style="text-decoration:none; color:inherit;">
                         <div class="item-image-wrapper-m">
                             <figure class="item-image-container">
                                 <picture>
-                                    <img src="{{ asset('assets-image/images-landing/milk123.png') }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
+                                    <img src="{{ asset($product->images->pluck('image')->first()) }}" alt="" style="object-fit: cover;width: 200px;height: 200px;">
                                 </picture>
                             </figure>
                         </div>
                         <div class="item-meta-container-m">
                             <div class="item-name-m" style="background-color: #D9D9D9;">
-                                <span style="display: inline-block;">Biovision 30’s</span>
+                                <span style="display: inline-block;">{{ $product->name }}</span>
                             </div>
                             <div class="item-price-m" style="background-color: #00B9D8;">
                                 <br>
-                                <span class="price">Rp. 555.000</span>
+                                <span class="price">Rp. {{ $product->price }}</span>
                             </div>
                         </div>
                     </a>

@@ -13,9 +13,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::with(['images', 'user.userDetail', 'category']);
+        $data = Product::with(['images', 'user.user_detail', 'category', 'user.user_detail.address']);
         if(request('search')){
-            $data = Product::with(['images', 'user.userDetail', 'category'])->where('name', 'like', '%'.request('search').'%')->orWhere('description', 'like', '%'.request('search').'%');
+            $data = Product::with(['images', 'user.user_detail', 'category', 'user.user_detail.address'])->where('name', 'like', '%'.request('search').'%')->orWhere('description', 'like', '%'.request('search').'%');
         }
         return $this->okResponse('Success',$data->get());
     }
@@ -56,7 +56,7 @@ class ProductController extends Controller
     {
         $data = null;
         if ($request->search != null || $request->search != '') {
-            $data = Product::with(['images', 'user.userDetail', 'category'])->where('name', 'like', '%'.$request->search.'%')->orWhere('description', 'like', '%'.$request->search.'%')->get();
+            $data = Product::with(['images', 'user.user_detail', 'user.user_detail.address', 'category'])->where('name', 'like', '%'.$request->search.'%')->orWhere('description', 'like', '%'.$request->search.'%')->get();
         }
         return $this->okResponse('Success',$data);
     }

@@ -33,8 +33,8 @@
             </a>
           </li>
           <li class="nav-item mt-2">
-            <form class="d-flex">
-              <input style="width: 300px;" class="form-control me-2" type="search" placeholder="Cari" aria-label="Cari" />
+            <form class="d-flex" action="" method="GET" id="searchForm">
+              <input style="width: 300px;" class="form-control me-2" type="search" name="search" id="searchInput" placeholder="Cari" aria-label="Cari" />
               <button class="btn btn-outline-info btn-outline-light" style="color:#ffffff" type="submit"><i class="fas fa-solid fa-magnifying-glass"></i></button>
             </form>
           </li>
@@ -101,6 +101,29 @@
         <script src="{{ asset('assets/plugins/notify/js/notifIt.js') }}"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         @yield('script')
+
+        <script>
+          document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Menghentikan pengiriman formulir
+
+            var searchInput = document.getElementById('searchInput');
+            var searchTerm = encodeURIComponent(searchInput.value.trim());
+
+            var currentUrl = new URL(window.location.href);
+            var urlParams = new URLSearchParams(currentUrl.search);
+
+            if (searchTerm) {
+              urlParams.set('search', searchTerm);
+            } else {
+              urlParams.delete('search');
+            }
+
+            currentUrl.search = urlParams.toString();
+            window.location.href = currentUrl;
+          });
+
+
+        </script>
 </body>
 
 </html

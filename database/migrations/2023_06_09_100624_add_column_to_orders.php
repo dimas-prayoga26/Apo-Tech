@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shipments', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->integer('cost');
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreignUuid('courier_id')->constrained();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shipment');
+        Schema::table('order_detail', function (Blueprint $table) {
+            //
+        });
     }
 };
